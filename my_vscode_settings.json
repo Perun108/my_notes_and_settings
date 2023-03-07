@@ -1,0 +1,320 @@
+{
+    //* an asterisk before the comment will render it greenish 
+    //* if you have Better Comments extension installed.
+    //* Editor settings
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.fontSize": 16,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.matchBrackets": "never",
+    "editor.mouseWheelScrollSensitivity": 1,
+    "editor.mouseWheelZoom": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.renderLineHighlight": "gutter",
+    "editor.scrollbar.vertical": "visible",
+    "editor.scrollbar.horizontal": "visible",
+    "editor.suggestSelection": "first",
+    "editor.quickSuggestions": {
+        // "inline": "on",
+        "other": "on",
+        "comments": "off",
+        "strings": "off"
+    },
+    "editor.snippetSuggestions": "bottom",
+    "editor.cursorSurroundingLines": 4,
+    "editor.tokenColorCustomizations": {
+        "[Monokai]": {
+            "strings": "#ffbb00",
+            "textMateRules": [
+                {
+                    "scope": "meta.function-call.generic.python",
+                    "settings": {
+                        "foreground": "#F2777A",
+                        "fontStyle": "italic"
+                    }
+                }
+            ]
+        }
+    },
+    //* Workbench settings
+    //* Themes and colors
+    "workbench.preferredDarkColorTheme": "Monokai",
+    "workbench.preferredLightColorTheme": "Solarized Light",
+    "workbench.colorTheme": "Default Light+",
+    "workbench.colorCustomizations": {
+        "[Monokai]": {
+            "editor.background": "#000000",
+            "statusBar.background": "#420c50",
+            "statusBar.debuggingBackground": "#263238",
+            "statusBar.noFolderBackground": "#212121",
+            "editorGutter.background": "#000000",
+            // "activityBar.background": "#000000",
+            // "activityBar.foreground": "#f4f4f4",
+            "terminal.background": "#0C0D0E",
+            "terminal.foreground": "#B7B8B9",
+            "terminalCursor.background": "#B7B8B9",
+            "terminalCursor.foreground": "#B7B8B9",
+        },
+        "editor.findMatchBackground": "#00cc44a8", //Current SEARCH MATCH
+        "editor.findMatchHighlightBackground": "#ff7b00a1", //Other SEARCH MATCHES
+        "editor.selectionBackground": "#e788ff7c",
+        "editor.selectionHighlightBackground": "#ff00005b", //Same content as selection
+        "editorBracketMatch.background": "#000",
+        "editorBracketMatch.border": "#0000",
+        "numberedBookmarks.lineBackground": "#007700",
+        "terminal.ansiBlack": "#0C0D0E",
+        "terminal.ansiBlue": "#3182BD",
+        "terminal.ansiBrightBlack": "#737475",
+        "terminal.ansiBrightBlue": "#3182BD",
+        "terminal.ansiBrightCyan": "#80B1D3",
+        "terminal.ansiBrightGreen": "#31A354",
+        "terminal.ansiBrightMagenta": "#756BB1",
+        "terminal.ansiBrightRed": "#E31A1C",
+        "terminal.ansiBrightWhite": "#FCFDFE",
+        "terminal.ansiBrightYellow": "#DCA060",
+        "terminal.ansiCyan": "#80B1D3",
+        "terminal.ansiGreen": "#31A354",
+        "terminal.ansiMagenta": "#756BB1",
+        "terminal.ansiRed": "#E31A1C",
+        "terminal.ansiWhite": "#B7B8B9",
+        "terminal.ansiYellow": "#DCA060",
+        "diffEditor.removedTextBackground": "#FF000055",
+        "diffEditor.insertedTextBackground": "#ffff0055"
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "workbench.editor.decorations.badges": true,
+    "workbench.editor.decorations.colors": true,
+    "workbench.editor.scrollToSwitchTabs": true,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.wrapTabs": true,
+    "workbench.editor.labelFormat": "short",
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+    //* Terminal settings
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "underline",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontWeightBold": "normal",
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "terminal.integrated.copyOnSelection": true,
+    //* Files settings
+    "files.autoSave": "onWindowChange",
+    "files.associations": {
+        "**.html": "html",
+        "*.json": "jsonc"
+    },
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "security.workspace.trust.untrustedFiles": "open",
+    //* Python settings
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.formatOnType": true,
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoImportUserSymbols": true,
+    "python.analysis.indexing": true,
+    "python.formatting.provider": "none",
+    "python.languageServer": "Pylance",
+    //* Formatters settings
+    "black-formatter.args": [
+        "--line-length=99",
+    ],
+    //* isort settings
+    "isort.check": true,
+    "isort.logLevel": "debug",
+    "isort.showNotifications": "off",
+    "isort.args": [
+        "--profile",
+        "black",
+        "--line-length=99",
+        "--trailing-comma",
+        "--multi-line=3",
+        "--force-grid-wrap=0",
+        "--use-parentheses=True"
+    ],
+    // "python.formatting.autopep8Args": [
+    //     "--ignore",
+    //     "E402"
+    // ],
+    //* Linting settings
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "pylint.args": [
+        "--load-plugins=",
+        "pylint_django,perflint",
+        "--disable=W0223,C0115,C0114,C0116,R0913,",
+        "--enable=W0614",
+        "--enable=W0611",
+        "--django-settings-module=amenity.django_app.django_app.settings",
+        "--max-line-length=99",
+        "--extension-pkg-whitelist=pygame, PyQt5"
+    ],
+    // "python.linting.pylintPath": "python -m pylint",
+    // "python.linting.pylintArgs": [
+    //     "--load-plugins=",
+    //     "pylint_django,perflint",
+    //     "--disable=W0223,R0201,C0115,C0114,C0301,C0116,W0707,R0913,",
+    //     "--enable=W0614",
+    //     "--enable=W0611",
+    //     "--django-settings-module=amenity.django_app.django_app.settings",
+    //     "--max-line-length=99",
+    //     "--extension-pkg-whitelist=pygame, PyQt5"
+    // ],
+    "pythonTestExplorer.testFramework": "pytest",
+    "djangointellisense.debugMessages": true,
+    //* Extensions
+    //* Markdown Preview Enhanced
+    "markdown-preview-enhanced.previewTheme": "solarized-light.css",
+    "markdown-preview-enhanced.printBackground": true,
+    "markdown-preview-enhanced.revealjsTheme": "solarized.css",
+    "markdown-preview-enhanced.codeBlockTheme": "coy.css",
+    "markdown.preview.fontSize": 16,
+    "markdown.extension.preview.autoShowPreviewToSide": true,
+    //* Code runner
+    "code-runner.defaultLanguage": "python3",
+    "code-runner.executorMap": {
+        "python": "python3 -u"
+        // "python": "python"
+    },
+    "code-runner.executorMapByFileExtension": {},
+    "code-runner.ignoreSelection": true,
+    // "code-runner.preserveFocus": false,
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    //* Todo tree extension
+    "todo-tree.tree.showScanModeButton": false,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    //* Jupyter notebook settings
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    //* Git settings
+    "git.autofetch": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    //* Spelling
+    "cSpell.userWords": [
+        "blanknull",
+        "charfield",
+        "conftest",
+        "conftestpy",
+        "djstripe",
+        "filterset",
+        "foreignkey",
+        "imagesfiles",
+        "improperlyconfigured",
+        "inputserializer",
+        "ipython",
+        "isort",
+        "kosperun",
+        "lintersformatters",
+        "makemigrations",
+        "managepy",
+        "manytomany",
+        "outputserializer",
+        "paymentintent",
+        "programmingerror",
+        "pygame",
+        "Pylint",
+        "pytest",
+        "Sendgrid",
+        "settingspy",
+        "setupintent",
+        "taskspy",
+        "testclass",
+        "userobjectscreate",
+        "viewsets"
+    ],
+    //* RapidAPI extension settings
+    "rapidapi.terminalLink.enabled": false,
+    //* Better comments settings
+    "better-comments.tags": [
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "todo",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "fixme",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        }
+    ],
+    //* Other
+    "redhat.telemetry.enabled": false,
+    "atlascode.jira.jqlList": [
+        {
+            "id": "0b8b138c-c701-4d56-a47a-ce7a0c8de8c0",
+            "enabled": true,
+            "name": "My Issues",
+            "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+            "siteId": "fc3770e1-500b-48fb-b9ae-5ab322578f7b",
+            "monitor": true
+        }
+    ]
+}
