@@ -1,41 +1,33 @@
-# Table of contents
-- [Table of contents](#table-of-contents)
-  - [**Installation**](#installation)
-  - [**Configuration**](#configuration)
-  - [**Install oh-my-zsh**](#install-oh-my-zsh)
-  - [**My plugins**](#my-plugins)
-  - [**Customizations**](#customizations)
-    - [**Hide your username and host from the prompt**](#hide-your-username-and-host-from-the-prompt)
-    - [**Auto copy selected text from terminal to clipboard**](#auto-copy-selected-text-from-terminal-to-clipboard)
-  - [**Custom plugins**](#custom-plugins)
-    - [**zsh-autosuggestions (Greyed out inline suggestions)**](#zsh-autosuggestions-greyed-out-inline-suggestions)
-      - [**Customization of auto-suggestions plugin (my_patches.zsh)**](#customization-of-auto-suggestions-plugin-my_patcheszsh)
-    - [**zsh-syntax-highlighting**](#zsh-syntax-highlighting)
-    - [**Autoupdate custom plugins**](#autoupdate-custom-plugins)
-    - [**zsh-z**](#zsh-z)
-    - [**zsh-completions**](#zsh-completions)
-  - [**My aliases**](#my-aliases)
-  - [**My .zshrc file**](#my-zshrc-file)
-  - [**Useful bash/zsh commands**](#useful-bashzsh-commands)
-    - [**Commands (additional keybindings to the default zsh ones below)**](#commands-additional-keybindings-to-the-default-zsh-ones-below)
-    - [**Add timestamps to history**](#add-timestamps-to-history)
-    - [**setopt correct**](#setopt-correct)
-    - [**Remove duplicates in zsh $PATH**](#remove-duplicates-in-zsh-path)
-    - [**dirs -v**](#dirs--v)
-  - [**Useful cli applications**](#useful-cli-applications)
-    - [**lf**](#lf)
-    - [**pls**](#pls)
-    - [**tldr for man pages**](#tldr-for-man-pages)
-    - [**fzf**](#fzf)
-  - [**Zsh hotkeys (keybindings)**](#zsh-hotkeys-keybindings)
-  - [**Keys combinations in bash/zsh/csh**](#keys-combinations-in-bashzshcsh)
-
-
-
-
-
-
-
+# My zsh notes
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Install oh-my-zsh](#install-oh-my-zsh)
+- [My plugins](#my-plugins)
+- [Customizations](#customizations)
+  - [Hide your username and host from the prompt](#hide-your-username-and-host-from-the-prompt)
+  - [Auto copy selected text from terminal to clipboard](#auto-copy-selected-text-from-terminal-to-clipboard)
+- [Custom plugins](#custom-plugins)
+  - [zsh-autosuggestions (Greyed out inline suggestions)](#zsh-autosuggestions-greyed-out-inline-suggestions)
+    - [Customization of auto-suggestions plugin (my_patches.zsh)](#customization-of-auto-suggestions-plugin-my_patcheszsh)
+  - [zsh-syntax-highlighting](#zsh-syntax-highlighting)
+  - [Autoupdate custom plugins](#autoupdate-custom-plugins)
+  - [zsh-z](#zsh-z)
+  - [zsh-completions](#zsh-completions)
+- [My aliases](#my-aliases)
+- [My .zshrc file](#my-zshrc-file)
+- [Useful bash/zsh commands](#useful-bashzsh-commands)
+  - [Commands (additional keybindings to the default zsh ones below)](#commands-additional-keybindings-to-the-default-zsh-ones-below)
+  - [Add timestamps to history](#add-timestamps-to-history)
+  - [setopt correct](#setopt-correct)
+  - [Remove duplicates in zsh $PATH](#remove-duplicates-in-zsh-path)
+  - [dirs -v](#dirs--v)
+- [Useful cli applications](#useful-cli-applications)
+  - [lf](#lf)
+  - [pls](#pls)
+  - [tldr for man pages](#tldr-for-man-pages)
+  - [fzf](#fzf)
+- [Zsh hotkeys (keybindings)](#zsh-hotkeys-keybindings)
+- [Keys combinations in bash/zsh/csh](#keys-combinations-in-bashzshcsh)
 
 ## **Installation**
 
@@ -169,9 +161,9 @@ Change theme to `agnoster` in `~/.zshrc`
 ```plugins=(aliases dirhistory dircycle web-search zsh-z copybuffer copypath colored-man-pages extract autoupdate)```
 
 **aliases**  
-https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases
-• acs: show all aliases by group.
-• acs <keyword>: filter aliases by <keyword> and highlight.
+https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases  
+• acs: show all aliases by group.  
+• acs <keyword>: filter aliases by <keyword> and highlight.  
 
 **autoupdate**  
 
@@ -191,15 +183,13 @@ Plugin for cycling through the directory stack
 
 This plugin enables directory navigation similar to using back and forward on browsers or common file explorers like `Finder` or `Nautilus`. It uses a small `zle` trick that lets you cycle through your directory stack left or right using `Ctrl + Shift + Left / Right` . This is useful when moving back and forth between directories in development environments, and can be thought of as kind of a nondestructive `pushd`/`popd`.  
 
-NOTE: For this plugin to work in VS Code you have to specify the following setting in `settings.json`:  
-`"terminal.integrated.sendKeybindingsToShell": true,`  
-otherwise it will not work (due to the `Alt` key integrated terminal bindings).
+**NOTE:** For this plugin to work in VS Code you have to specify the following setting in `settings.json`: `"terminal.integrated.sendKeybindingsToShell": true,` otherwise it will not work (due to the `Alt` key integrated terminal bindings).
 
 **dirhistory**  
 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory  
 This plugin allows you to navigate the history of previous working directories using `Alt + Left` and `Alt + Right`. `Alt + Left` moves to past directories, and `Alt + Right` goes back to recent directories.
 
-NOTE: Does not work well in VSCode integrated terminal (due to `Alt` keybindings), but works well in other terminals.
+**NOTE:** Does not work well in VSCode integrated terminal (due to `Alt` keybindings), but works well in other terminals.
 
 **extract**  
 This plugin defines a function called extract that extracts the archive file you pass it, and it supports a wide variety of archive filetypes.
