@@ -1,15 +1,28 @@
-<!-- # Table of contents
+# Table of contents
 - [Table of contents](#table-of-contents)
   - [**My VSCode notes**](#my-vscode-notes)
   - [**Sync between computers (without SettingsSync via GitHub)**](#sync-between-computers-without-settingssync-via-github)
   - [**Python virtual envs and interpreter**](#python-virtual-envs-and-interpreter)
     - [**Selecting Interpreter for the virtual environment**](#selecting-interpreter-for-the-virtual-environment)
-  - [**Using VSCode as your Git editor, difftool, and mergetool**](#using-vscode-as-your-git-editor-difftool-and-mergetool) -->
-
-
+  - [**Using VSCode as your Git editor, difftool, and mergetool**](#using-vscode-as-your-git-editor-difftool-and-mergetool)
+    - [**Make VSCode your default Git editor**](#make-vscode-your-default-git-editor)
+    - [**Make VS Code your default Diff Tool**](#make-vs-code-your-default-diff-tool)
+    - [**Make VS Code your default Merge Tool**](#make-vs-code-your-default-merge-tool)
+  - [**Themes and Colors**](#themes-and-colors)
+  - [**Custom settings**](#custom-settings)
+    - [**Change tabs with `ctrl+tab` without dropdown menu**](#change-tabs-with-ctrltab-without-dropdown-menu)
+    - [**Fix Alt key behavior for some zsh plugins**](#fix-alt-key-behavior-for-some-zsh-plugins)
+    - [**Auto copy selected text from terminal to clipboard**](#auto-copy-selected-text-from-terminal-to-clipboard)
+    - [**How many lines are shown above/below cursor**](#how-many-lines-are-shown-abovebelow-cursor)
+    - [**Make diff colors more distinct**](#make-diff-colors-more-distinct)
+  - [**Some links to settings, tips, tutorials**](#some-links-to-settings-tips-tutorials)
+  
 # My VSCode notes
 
 ## Sync between computers (without SettingsSync via GitHub)  
+
+For my personal projects I use SettingsSync via GitHub, but if you need to sync your settings and extensions without using third-party services, here's how to do that:
+
 1. Copy your settings files that are there in the directory `~/.config/Code/User/` (like `settings.json`, `keybindings.json`, perhaps `snippets` too) from one machine to another.  
 2. Install all extensions by pasting into the terminal shell the contents of the file vscode_extensions (this file can be created by CLI: `code --list-extensions | xargs -L 1 echo code --install-extension >> vscode_extensions`).  
 3. Set up `zsh` (`~/.zshrc` + custom setting for the theme's prompt – see my_zsh_notes).  
@@ -44,7 +57,7 @@ Here are the situations where I have encountered friction or have an alternate p
 5. Some merge conflicts are demanding, I like to jump to source files to get the complete picture, I can use familiar shortcuts if I can do it in VS Code.  
 6. If I can do it all in my code editor, I have a consistent colour theme without further configuration.  
 
-### Make VSCode your default git editor
+### Make VSCode your default Git editor
 
 `git config --global core.editor 'code --wait'`  
 
@@ -87,36 +100,6 @@ This adds the following settings to your global `Git config`:
 You can paste this in yourself if you prefer.
 
 If you’re not feeling VS Code as your Merge Tool, you run the command `git mergetool --tool-help` to see more options.  
-
-## Some links to settings, tips, tutorials
-
-https://code.visualstudio.com/docs/editor/editingevolved
-
-Basic Editing:
-https://code.visualstudio.com/docs/editor/codebasics 
-
-Visual Studio Code Tips and Tricks
-https://code.visualstudio.com/docs/getstarted/tips-and-tricks 
-
-Getting Started with Python in VS Code:
-https://code.visualstudio.com/docs/python/python-tutorial 
-
-Editing Python in Visual Studio Code:
-https://code.visualstudio.com/docs/python/editing 
-
-
-### Articles about settings etc.
-https://www.vscodecandothat.com/ 
-https://realpython.com/python-development-visual-studio-code/
-https://dannys.cloud/10-best-vs-code-extensions-for-python/
-https://switowski.com/blog/18-plugins-for-python-in-vscode 
-https://www.dunebook.com/best-vscode-python-extensions/ 
-https://dev.to/madza/what-does-your-vs-code-setup-look-like-2a6o
-https://towardsdatascience.com/top-3-vs-code-extensions-for-python-and-data-science-7462dd4ee530 
-
-### VSCode and ML, DS, AI Resources
-https://docs.microsoft.com/azure/machine-learning/service/how-to-vscode-tools
-https://code.visualstudio.com/docs/python/data-science-tutorial
 
 ## Themes and Colors
 
@@ -221,3 +204,28 @@ Another way to add cursors is to hold Ctrl+Alt and press the up or down arrow ke
 
 Another slick move: You can insert a cursor at every instance of a selected piece of text by hitting Ctrl-Shift-L. You can also control the selection size of multiple cursors by pressing Shift-Alt and the left or right arrow.
 ```
+
+## Some links to settings, tips, tutorials
+
+https://code.visualstudio.com/docs/editor/editingevolved
+
+Basic Editing: https://code.visualstudio.com/docs/editor/codebasics 
+
+Visual Studio Code Tips and Tricks: https://code.visualstudio.com/docs/getstarted/tips-and-tricks 
+
+Getting Started with Python in VS Code: https://code.visualstudio.com/docs/python/python-tutorial 
+
+Editing Python in Visual Studio Code: https://code.visualstudio.com/docs/python/editing 
+
+**Articles about settings etc.**
+https://www.vscodecandothat.com/ 
+https://realpython.com/python-development-visual-studio-code/
+https://dannys.cloud/10-best-vs-code-extensions-for-python/
+https://switowski.com/blog/18-plugins-for-python-in-vscode 
+https://www.dunebook.com/best-vscode-python-extensions/ 
+https://dev.to/madza/what-does-your-vs-code-setup-look-like-2a6o
+https://towardsdatascience.com/top-3-vs-code-extensions-for-python-and-data-science-7462dd4ee530 
+
+**VSCode and ML, DS, AI Resources**
+https://docs.microsoft.com/azure/machine-learning/service/how-to-vscode-tools
+https://code.visualstudio.com/docs/python/data-science-tutorial
