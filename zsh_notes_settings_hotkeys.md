@@ -6,6 +6,7 @@
   - [**My plugins**](#my-plugins)
   - [**Customizations**](#customizations)
     - [**Hide your username and host from the prompt**](#hide-your-username-and-host-from-the-prompt)
+    - [**Auto copy selected text from terminal to clipboard**](#auto-copy-selected-text-from-terminal-to-clipboard)
   - [**Custom plugins**](#custom-plugins)
     - [**zsh-autosuggestions (Greyed out inline suggestions)**](#zsh-autosuggestions-greyed-out-inline-suggestions)
       - [**Customization of auto-suggestions plugin (my_patches.zsh)**](#customization-of-auto-suggestions-plugin-my_patcheszsh)
@@ -208,6 +209,14 @@ This way you don't have to know what specific command extracts a file, you just 
 **web-search**  
 This plugin adds aliases for searching with Google, Wiki, Bing, YouTube and other popular services.
 
+### **Fix Alt key behavior for some zsh plugins**
+
+For some `zsh` plugins (like `dircycle`, `dirhistory`) to work you have to specify the following setting in `settings.json`:
+
+```json
+"terminal.integrated.sendKeybindingsToShell": true // otherwise it will not work (due to the Alt key integrated terminal bindings).
+```
+
 ## **Customizations**  
 Follow documentation for customizing plugins and themes: https://github.com/ohmyzsh/ohmyzsh/wiki/Customization  
 
@@ -237,6 +246,10 @@ I did as follows:
 3. `PROMPT` looks like this `PROMPT='%{%f%b%k%}$(build_prompt) '`
 4. Added timestamp at the right side:  
 `RPROMPT='%{$fg[yellow]%}[%*] '`
+
+### **Auto copy selected text from terminal to clipboard**
+
+Add `"terminal.integrated.copyOnSelection": true`, to be able have the selected text automatically copied to the clipboard.
 
 ### **Custom plugins**  
 
