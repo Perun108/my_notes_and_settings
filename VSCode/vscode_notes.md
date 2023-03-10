@@ -201,17 +201,12 @@ Found on the internet
 
 ```Another slick move: You can insert a cursor at every instance of a selected piece of text by hitting Ctrl-Shift-L. You can also control the selection size of multiple cursors by pressing Shift-Alt and the left or right arrow.```
 
-## Some links to settings, tips, tutorials
-
-https://code.visualstudio.com/docs/editor/editingevolved
-
-Basic Editing: https://code.visualstudio.com/docs/editor/codebasics 
-
-Visual Studio Code Tips and Tricks: https://code.visualstudio.com/docs/getstarted/tips-and-tricks 
-
-Getting Started with Python in VS Code: https://code.visualstudio.com/docs/python/python-tutorial 
-
-Editing Python in Visual Studio Code: https://code.visualstudio.com/docs/python/editing 
+## Some links to settings, tips, tutorials  
+https://code.visualstudio.com/docs/editor/editingevolved  
+Basic Editing: https://code.visualstudio.com/docs/editor/codebasics  
+Visual Studio Code Tips and Tricks: https://code.visualstudio.com/docs/getstarted/tips-and-tricks  
+Getting Started with Python in VS Code: https://code.visualstudio.com/docs/python/python-tutorial  
+Editing Python in Visual Studio Code: https://code.visualstudio.com/docs/python/editing  
 
 **Articles about settings etc.**
 https://www.vscodecandothat.com/  
