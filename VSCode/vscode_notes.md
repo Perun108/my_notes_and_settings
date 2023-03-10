@@ -1,6 +1,4 @@
-# Table of contents
-- [Table of contents](#table-of-contents)
-  - [My VSCode notes](#my-vscode-notes)
+# My VSCode notes
   - [Sync between computers (without SettingsSync via GitHub)](#sync-between-computers-without-settingssync-via-github)
   - [Python virtual envs and interpreter](#python-virtual-envs-and-interpreter)
     - [Selecting Interpreter for the virtual environment](#selecting-interpreter-for-the-virtual-environment)
@@ -11,7 +9,7 @@
   - [Themes and Colors](#themes-and-colors)
   - [Custom settings](#custom-settings)
     - [Change tabs with `ctrl+tab` without dropdown menu](#change-tabs-with-ctrltab-without-dropdown-menu)
-    - [Fix Alt key behavior for some zsh plugins](#fix-alt-key-behavior-for-some-zsh-plugins)
+    - [Fix `Alt` key behavior for some `zsh` plugins](#fix-alt-key-behavior-for-some-zsh-plugins)
     - [Auto copy selected text from terminal to clipboard](#auto-copy-selected-text-from-terminal-to-clipboard)
     - [How many lines are shown above/below cursor](#how-many-lines-are-shown-abovebelow-cursor)
     - [Make diff colors more distinct](#make-diff-colors-more-distinct)
