@@ -25,7 +25,7 @@ For my personal projects I use SettingsSync via GitHub, but if you need to sync 
 
 1. Copy your settings files that are there in the directory `~/.config/Code/User/` (like `settings.json`, `keybindings.json`, perhaps `snippets` too) from one machine to another.  
 2. Install all extensions by pasting into the terminal shell the contents of the file vscode_extensions (this file can be created by CLI: `code --list-extensions | xargs -L 1 echo code --install-extension >> vscode_extensions`).  
-3. Set up `zsh` (`~/.zshrc` + custom setting for the theme's prompt – see my_zsh_notes).  
+3. Set up `zsh` (`~/.zshrc` + custom setting for the theme's prompt – see [my_zsh_notes](../zsh_notes_settings_hotkeys.md)).  
 
 ## Python virtual envs and interpreter  
 
@@ -108,7 +108,7 @@ https://glitchbone.github.io/vscode-base16-term/#/brewer
 
 Most beautiful themes:
 - Andromeda (doesn't support color highlighting dicts, sets, lists)
-- Monokai Pro (too much of red color - for, in, =, >, but highlights all methods and objects). I use it, but changed background color to full black (`"editor.background": "#000000"`, previously was grey), and also terminal font to Hack. Also set up different custom color highlighting (got on Stackoverflow) – you better set all custom colors and settings specifically for the given color theme - see these parts in my `vscode_settings.md`:
+- Monokai Pro (too much of red color - for, in, =, >, but highlights all methods and objects). I use it, but changed background color to full black (`"editor.background": "#000000"`, previously was grey), and also terminal font to Hack. Also set up different custom color highlighting (got on Stackoverflow) – you better set all custom colors and settings specifically for the given color theme - see these parts in my [vscode_settings.md](my_vscode_settings.json):
 
 ```json
 "editor.tokenColorCustomizations": {
@@ -134,7 +134,7 @@ Most beautiful themes:
 
 ## Custom settings
 
-For the actual settings see `settings.json`
+For the actual settings see [settings.json](my_vscode_settings.json)
 
 ### Change tabs with `ctrl+tab` without dropdown menu
 
@@ -194,16 +194,14 @@ Code Folding at various levels:
 
 **Multi-cursor**
 
-Found on the internet
-```
-`Find in selection` feature is also highly useful. If you highlight some code, press Ctrl+f to open the search menu, then you can press `Alt+l` to only search in the highlighted area.  
+Found on the internet  
+```Find in selection feature is also highly useful. If you highlight some code, press Ctrl+f to open the search menu, then you can press `Alt+l` to only search in the highlighted area.```
 
-My favorite productivity tip aside from making my own custom keyboard short cuts is using multiple cursors -  you hold down the Alt key and click somewhere, you’ll put down a new cursor. Each cursor will accept the same key commands at the same time—a handy way to enter boilerplate text on multiple lines at once, for example.  
+```My favorite productivity tip aside from making my own custom keyboard short cuts is using multiple cursors -  you hold down the Alt key and click somewhere, you’ll put down a new cursor. Each cursor will accept the same key commands at the same time—a handy way to enter boilerplate text on multiple lines at once, for example.```
 
-Another way to add cursors is to hold Ctrl+Alt and press the up or down arrow keys. Doing so will insert cursors in the lines above or below the current one—useful for working in columns of text.  
+```Another way to add cursors is to hold Ctrl+Alt and press the up or down arrow keys. Doing so will insert cursors in the lines above or below the current one—useful for working in columns of text.```
 
-Another slick move: You can insert a cursor at every instance of a selected piece of text by hitting Ctrl-Shift-L. You can also control the selection size of multiple cursors by pressing Shift-Alt and the left or right arrow.  
-```
+```Another slick move: You can insert a cursor at every instance of a selected piece of text by hitting Ctrl-Shift-L. You can also control the selection size of multiple cursors by pressing Shift-Alt and the left or right arrow.```
 
 ## Some links to settings, tips, tutorials
 
