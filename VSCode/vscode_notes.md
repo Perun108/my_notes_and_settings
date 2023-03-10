@@ -196,13 +196,13 @@ Code Folding at various levels:
 
 Found on the internet
 ```
-`Find in selection` feature is also highly useful. If you highlight some code, press Ctrl+f to open the search menu, then you can press `Alt+l` to only search in the highlighted area.
+`Find in selection` feature is also highly useful. If you highlight some code, press Ctrl+f to open the search menu, then you can press `Alt+l` to only search in the highlighted area.  
 
-My favorite productivity tip aside from making my own custom keyboard short cuts is using multiple cursors -  you hold down the Alt key and click somewhere, you’ll put down a new cursor. Each cursor will accept the same key commands at the same time—a handy way to enter boilerplate text on multiple lines at once, for example.
+My favorite productivity tip aside from making my own custom keyboard short cuts is using multiple cursors -  you hold down the Alt key and click somewhere, you’ll put down a new cursor. Each cursor will accept the same key commands at the same time—a handy way to enter boilerplate text on multiple lines at once, for example.  
 
-Another way to add cursors is to hold Ctrl+Alt and press the up or down arrow keys. Doing so will insert cursors in the lines above or below the current one—useful for working in columns of text.
+Another way to add cursors is to hold Ctrl+Alt and press the up or down arrow keys. Doing so will insert cursors in the lines above or below the current one—useful for working in columns of text.  
 
-Another slick move: You can insert a cursor at every instance of a selected piece of text by hitting Ctrl-Shift-L. You can also control the selection size of multiple cursors by pressing Shift-Alt and the left or right arrow.
+Another slick move: You can insert a cursor at every instance of a selected piece of text by hitting Ctrl-Shift-L. You can also control the selection size of multiple cursors by pressing Shift-Alt and the left or right arrow.  
 ```
 
 ## Some links to settings, tips, tutorials
@@ -218,14 +218,14 @@ Getting Started with Python in VS Code: https://code.visualstudio.com/docs/pytho
 Editing Python in Visual Studio Code: https://code.visualstudio.com/docs/python/editing 
 
 **Articles about settings etc.**
-https://www.vscodecandothat.com/ 
-https://realpython.com/python-development-visual-studio-code/
-https://dannys.cloud/10-best-vs-code-extensions-for-python/
-https://switowski.com/blog/18-plugins-for-python-in-vscode 
-https://www.dunebook.com/best-vscode-python-extensions/ 
-https://dev.to/madza/what-does-your-vs-code-setup-look-like-2a6o
-https://towardsdatascience.com/top-3-vs-code-extensions-for-python-and-data-science-7462dd4ee530 
+https://www.vscodecandothat.com/  
+https://realpython.com/python-development-visual-studio-code/  
+https://dannys.cloud/10-best-vs-code-extensions-for-python/  
+https://switowski.com/blog/18-plugins-for-python-in-vscode   
+https://www.dunebook.com/best-vscode-python-extensions/   
+https://dev.to/madza/what-does-your-vs-code-setup-look-like-2a6o  
+https://towardsdatascience.com/  top-3-vs-code-extensions-for-python-and-data-science-7462dd4ee530  
 
 **VSCode and ML, DS, AI Resources**
-https://docs.microsoft.com/azure/machine-learning/service/how-to-vscode-tools
-https://code.visualstudio.com/docs/python/data-science-tutorial
+https://docs.microsoft.com/azure/machine-learning/service/how-to-vscode-tools  
+https://code.visualstudio.com/docs/python/data-science-tutorial  
