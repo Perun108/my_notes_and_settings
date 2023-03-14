@@ -1,7 +1,7 @@
 # Pre-commit hooks
 
-https://pre-commit.com/ 
-https://github.com/pre-commit/pre-commit-hooks 
+https://pre-commit.com/  
+https://github.com/pre-commit/pre-commit-hooks  
 
 1. Install pre-commit: 
 
