@@ -21,7 +21,7 @@ repos:
     rev: 6.0.0
     hooks:
       - id: flake8
-        args: ["--config=src/quality_config/.flake8"]
+        args: ["--config=path/to/your/flake_config_file/.flake8"]
         additional_dependencies: [flake8-isort]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -39,7 +39,7 @@ repos:
         name: pytest-check
         entry: pytest
         language: system
-        args: ["--ds=djlodging.django_app.django_core.settings"]
+        args: ["--ds=absolute.path.to.you.django.settings"]
         pass_filenames: false
         always_run: true
         verbose: true
