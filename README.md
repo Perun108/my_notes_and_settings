@@ -1,2 +1,2 @@
 # my_settings
-My settings for various tools that I use
+My notes and settings for various tools that I use
