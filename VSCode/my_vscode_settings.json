@@ -1,6 +1,7 @@
 {
     //* an asterisk before the comment will render it greenish 
     //* if you have Better Comments extension installed.
+    //* Search VSCode docs for the settings.json location (different for different OSes)
     //* Editor settings
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": "active",
