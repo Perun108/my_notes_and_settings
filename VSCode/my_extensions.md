@@ -10,6 +10,16 @@ You can use the following command to create a file with a list of your extension
 
 `code --list-extensions | xargs -L 1 echo code --install-extension >> vscode_extensions`
 
+This will prepend each extension with the installation command.
+
+Alternatively, you can batch install all extensions from a file with a bare extensions list (like the one below) as follows:
+
+Courtesy https://romanvesely.com/vscode-extensions
+
+`xargs -n1 code --install-extension < extensions.md`
+
+`xargs` will execute `code --install-extension` for provided input. More precisely, argument `-n1` means that a command is executed one-by-one for every line of the input file.
+
 ### Used  
 aaron-bond.better-comments  
 alefragnani.Bookmarks  
