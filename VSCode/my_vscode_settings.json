@@ -2,15 +2,16 @@
     //* an asterisk before the comment will render it greenish 
     //* if you have Better Comments extension installed.
     //* Search VSCode docs for the settings.json location (different for different OSes)
+    "window.zoomLevel": -1,
     //* Editor settings
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": "active",
     "editor.fontSize": 16,
     "editor.formatOnPaste": false,
-    "editor.formatOnSave": true,
+    // "editor.formatOnSave": true,
     "editor.matchBrackets": "never",
     "editor.mouseWheelScrollSensitivity": 1,
-    "editor.mouseWheelZoom": true,
+    // "editor.mouseWheelZoom": true,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.renderLineHighlight": "gutter",
     "editor.scrollbar.vertical": "visible",
@@ -42,7 +43,7 @@
     //* Themes and colors
     "workbench.preferredDarkColorTheme": "Monokai",
     "workbench.preferredLightColorTheme": "Solarized Light",
-    "workbench.colorTheme": "Default Light+",
+    "workbench.colorTheme": "Monokai",
     "workbench.colorCustomizations": {
         "[Monokai]": {
             "editor.background": "#000000",
@@ -95,10 +96,12 @@
     "workbench.editor.enablePreviewFromQuickOpen": true,
     "workbench.iconTheme": "vscode-icons",
     "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+    "vsicons.dontShowNewVersionMessage": true,
     //* Terminal settings
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "underline",
-    "terminal.integrated.defaultProfile.linux": "zsh",
+    // "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.defaultProfile.osx": "zsh",
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
     "terminal.integrated.fontSize": 14,
@@ -106,7 +109,7 @@
     "terminal.integrated.sendKeybindingsToShell": true,
     "terminal.integrated.copyOnSelection": true,
     //* Files settings
-    "files.autoSave": "onWindowChange",
+    "files.autoSave": "onFocusChange",
     "files.associations": {
         "**.html": "html",
         "*.json": "jsonc"
@@ -115,7 +118,7 @@
     "security.workspace.trust.untrustedFiles": "open",
     //* Python settings
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "ms-python.python",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
@@ -126,12 +129,16 @@
     "python.analysis.autoImportCompletions": true,
     "python.analysis.autoImportUserSymbols": true,
     "python.analysis.indexing": true,
-    "python.formatting.provider": "none",
+    // "python.formatting.provider": "none",
     "python.languageServer": "Pylance",
-    //* Formatters settings
-    "black-formatter.args": [
-        "--line-length=99",
+    "python.analysis.extraPaths": [
+        "/Users/kosperun/loknow/Django/venv/lib/python3.9/site-packages/"
     ],
+    //* Formatters settings
+    // "black-formatter.args": [
+    //     "--line-length=120",
+    //     // "--skip-string-normalization",
+    // ],
     //* isort settings
     "isort.check": true,
     "isort.logLevel": "debug",
@@ -139,7 +146,7 @@
     "isort.args": [
         "--profile",
         "black",
-        "--line-length=99",
+        "--line-length=120",
         "--trailing-comma",
         "--multi-line=3",
         "--force-grid-wrap=0",
@@ -150,16 +157,16 @@
     //     "E402"
     // ],
     //* Linting settings
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": false,
+    // "python.linting.enabled": true,
+    // "python.linting.pylintEnabled": false,
     "pylint.args": [
         "--load-plugins=",
         "pylint_django,perflint",
         "--disable=W0223,C0115,C0114,C0116,R0913,",
         "--enable=W0614",
         "--enable=W0611",
-        "--django-settings-module=amenity.django_app.django_app.settings",
-        "--max-line-length=99",
+        "--django-settings-module=django_app.django_app.settings",
+        "--max-line-length=120",
         "--extension-pkg-whitelist=pygame, PyQt5"
     ],
     // "python.linting.pylintPath": "python -m pylint",
@@ -169,7 +176,7 @@
     //     "--disable=W0223,R0201,C0115,C0114,C0301,C0116,W0707,R0913,",
     //     "--enable=W0614",
     //     "--enable=W0611",
-    //     "--django-settings-module=amenity.django_app.django_app.settings",
+    //     "--django-settings-module=django_app.django_app.settings",
     //     "--max-line-length=99",
     //     "--extension-pkg-whitelist=pygame, PyQt5"
     // ],
@@ -214,6 +221,13 @@
     //* Git settings
     "git.autofetch": true,
     "diffEditor.ignoreTrimWhitespace": false,
+    "githubPullRequests.terminalLinksHandler": "github",
+    "githubPullRequests.pullBranch": "never",
+    "gitlens.advanced.blame.customArguments": [
+        "--ignore-revs-file",
+        ".git-blame-ignore-revs"
+    ],
+    "rainbow_csv.enable_context_menu_head": true,
     //* Spelling
     "cSpell.userWords": [
         "blanknull",
@@ -317,5 +331,36 @@
             "siteId": "fc3770e1-500b-48fb-b9ae-5ab322578f7b",
             "monitor": true
         }
-    ]
+    ],
+    "errorLens.enabled": true,
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "warning",
+        "info"
+    ],
+    // Vim and NeoVim settings
+    // Vim plugin settings
+    "vim.hlsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false
+    },
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<C-d>"
+            ],
+            "after": [
+                "<C-d>"
+            ]
+        }
+    ],
+    "vim.smartRelativeLine": true,
+    "editor.lineNumbers": "relative",
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
 }
