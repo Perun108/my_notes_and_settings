@@ -1,6 +1,6 @@
 # Vim/NeoVim notes
 - [**Vim keybindings**](#vim-keybindings)
-- [** Use system clipboard**](#use-system-clipboard)
+- [**Use system clipboard**](#use-system-clipboard)
 - [**Deleting words and characters**](#deleting-words-and-characters)
   - [**Delete the first 2 characters of every line**](#delete-first-2-characters-of-every-line-only-if-theyre-spaces)
   - [**Delete the same word/char on multiple lines**](#delete-the-same-wordchar-on-multiple-lines)
@@ -23,7 +23,7 @@
 ## Vim keybindings
 
 ### Two simple steps:
-1. Movement/editing/writing Hotkeys:
+1. Movement/editing/writing Hotkeys:  
 `h`	move left  
 `j`	move down  
 `k`	move up  
@@ -66,7 +66,7 @@
 `:q`	quit (fails if anything has changed)  
 `:q!`	quit and throw away changes  
 
-2. File/window hotkeys:
+2. File/window hotkeys:  
 `/pattern`	search for pattern  
 `?pattern`	search backward for pattern  
 `n`		repeat search in same direction  
@@ -170,7 +170,7 @@ You can also use `vim-surround` by selecting a bit of text in visual mode and th
 
 ### Surround words on multiple lines
 
-What is the easiest way to use VIM for adding quotation marks to first word of each line?
+What is the easiest way to use VIM for adding quotation marks to first word of each line?  
 https://stackoverflow.com/questions/60309202/add-double-quotation-mark-to-first-word-of-each-line
 
 1. Record it for one line, using the following keys (with the cursor at the start of the first line):
@@ -210,8 +210,9 @@ NeoVim extension is slightly better in the following:
 - you can add any plugin (can’t add plugins to Vim emulator!), but this is relatively irrelevant since I don’t really need to add plugins and Vim emulator already has every plugin I need.
 - you can execute any `:` command (Vim emulator doesn’t allow some commands)
 - you can navigate between explorer and split tabs with regular vim motions (`Ctrl+h/l`)
-- you can have very nice keybindings to `rename`, `create` and `delete` files and directories right within explorer! (this is really useful!!), to `split windows`, etc.
-Cons:
+- you can have very nice keybindings to `rename`, `create` and `delete` files and directories right within explorer! (this is really useful!!), to `split windows`, etc.  
+
+Cons:  
 - `Ctrl+d/u` doesn’t work in `git diff` window! (in works with Vim!)
 - when you move from explorer to tab with `Ctrl+l` sometimes (often or even always!) it drops you into `visual` mode or something and starts to select words and lines with simple `h/j/k/l` motions! (Very annoying!)
 - I had issues with motions after some time working in NeoVim plugin (`d$` didn’t work, motions didn’t go anywhere, strange character or whitespace selection that didn’t go away even after Space+n) and had to reload the window. You have to reload window in VSCode quite often because nvim starts misbehaving (just now I got stuck in `INSERT` mode and only `Ctrl+[` or `Ctrl+c` helped but until I again needed to go into insert mode and `Esc` didn't work).
