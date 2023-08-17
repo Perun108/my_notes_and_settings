@@ -13,6 +13,7 @@
     - [Auto copy selected text from terminal to clipboard](#auto-copy-selected-text-from-terminal-to-clipboard)
     - [How many lines are shown above/below cursor](#how-many-lines-are-shown-abovebelow-cursor)
     - [Make diff colors more distinct](#make-diff-colors-more-distinct)
+    - [Navigate between Search results in the Side Bar and Editor with keyboard](#navigate-between-search-results-in-the-side-bar-and-editor-with-keyboard)
   - [Some links to settings, tips, tutorials](#some-links-to-settings-tips-tutorials)
   
 # My VSCode notes
@@ -201,6 +202,50 @@ Found on the internet
 
 ```Another slick move: You can insert a cursor at every instance of a selected piece of text by hitting Ctrl-Shift-L. You can also control the selection size of multiple cursors by pressing Shift-Alt and the left or right arrow.```
 
+### Navigate between Search results in the Side Bar and Editor with keyboard
+https://stackoverflow.com/questions/69655369/what-is-the-keyboard-shortcut-for-jumping-into-search-results-in-visual-studio-c
+
+Making any key binding you like to jump to the search results (=`"search.action.focusSearchList"`), you can use the following in your `keybindings.json` file:
+(in my case I used the key binding `alt + j`)
+```json
+    {
+        "key": "alt+j",
+        "command": "search.action.focusSearchList",
+        "when": "searchViewletFocus"
+    }
+```
+
+The key binding works when the search thingy is already in focus.
+
+My workflow would now be:
+    1. `ctrl + shift + f` to search for smth. 
+    2. `ctrl + j` 
+    3. use `arrows` (default) or `j` (`vim` plugin) to go through search results 
+    4. hit enter on a search results to start editing. 
+
+Another solution (I like the previous one better):
+
+https://stackoverflow.com/questions/49662075/is-there-a-shortcut-to-move-focus-to-the-sidebar-in-visual-studio-code
+
+If you'd like to have this (or other) key combination to act like two way "focus toggle" between editor and sidebar (like Show Explorer behaves), you can alter your settings accordingly using distinct actions with identical key combination differentiated by excluding "when" conditions. Resulting part of `keybindings.json` would then be:
+```json
+  { // Unbind unconditional default using "minus" (-) before command
+    "key": "ctrl+0",
+    "command": "-workbench.action.focusSideBar"
+  },
+  { // Move focus to the SideBar if not (!) there
+    "key": "ctrl+0",
+    "when": "!sideBarFocus",
+    "command": "workbench.action.focusSideBar"
+  },
+  { // Move focus to the Editor, if currently in the SideBar
+    "key": "ctrl+0",
+    "when": "sideBarFocus",
+    "command": "workbench.action.focusActiveEditorGroup"
+  },
+```
+
+***
 ## Some links to settings, tips, tutorials  
 https://code.visualstudio.com/docs/editor/editingevolved  
 Basic Editing: https://code.visualstudio.com/docs/editor/codebasics  
