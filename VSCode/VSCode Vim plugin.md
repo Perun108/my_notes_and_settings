@@ -1,5 +1,6 @@
-Alt+Down == yyp == Yp == :t.Enter  
-Alt+Up == yyP == YP == :t-1Enter == :t-.  
+Set up new keybinding for moving a line up/down - `Alt+j/k`:  
+`Alt+j` == `Alt+Down` == `yyp` == `Yp` == `:t.Enter`  
+`Alt+k` == `Alt+Up` == `yyP` == `YP` == `:t-1Enter` == `:t-.`  
 ## Vim vs NeoVim for VSCode
 
 NeoVim extension is slightly better in the following:
@@ -34,7 +35,7 @@ Add zz to Ctrl+d/u to center cursor when scrolling half page:
 "<C-d>"
 ],
 "after": [
-"<C-d>", "z", "z
+"<C-d>", "z", "z"
 ]
 },
 ```
