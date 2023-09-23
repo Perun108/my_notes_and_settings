@@ -6,19 +6,24 @@
   - [**Delete the same word/char on multiple lines**](#delete-the-same-wordchar-on-multiple-lines)
   - [**Delete a word under cursor**](#delete-a-word-under-cursor)
   - [**Delete all blank lines**](#delete-all-blank-lines)
-- [**Select (to copy) multiple lines in range:**](#select-to-copy-multiple-lines-in-range)
+- [**Select (to copy) multiple lines in range**](#select-to-copy-multiple-lines-in-range)
+- [Advanced copying, deleting and moving (without moving or selecting, with +- lines numbers and :t/:d/:m)](#Advanced copying, deleting and moving (without moving or selecting, with +- lines numbers and :t/:d/:m))
 - [**Change the same word multiple times**](#change-the-same-word-multiple-times)
+- [Search and Replace](## Search and Replace)
 - [**Surroundings in Vim**](#surroundings-in-vim)
   - [**Copy text inside surrounding characters**](#copy-text-inside-surrounding-characters)
   - [**vim.surround plugin**](#vimsurround-plugin)
   - [**Surround words on multiple lines**](#surround-words-on-multiple-lines)
 - [**Indentation**](#indentation)
-- [**Vim vs NeoVim for VSCode**](#vim-vs-neovim-for-vscode)
+- [Paste output of a shell command into a file without opening a terminal](## Paste output of a shell command into a file without opening a terminal)
+- [Splits](## Splits)
+- [**NeoVim**](#vim-vs-neovim-for-vscode)
   - [**VSCode features that are needed in any NeoVim IDE**](#vscode-features-that-are-needed-in-any-neovim-ide)
-  - [**Chris (LunarVim) keybindings (https://www.youtube.com/watch?v=g4dXZ0RQWdw)**](#chris-lunarvim-keybindings-httpswwwyoutubecomwatchvg4dxz0rqwdw)
   - [**LunarVim**](#lunarvim)
-
-## See my vim keybindings and settings for VSCode in https://github.com/Perun108/my_notes_and_settings/tree/main/VSCode/VSCodeNeoVim
+  - [**Chris (LunarVim) keybindings (https://www.youtube.com/watch?v=g4dXZ0RQWdw)**](#chris-lunarvim-keybindings-httpswwwyoutubecomwatchvg4dxz0rqwdw)
+- [Vim apps for MacOSX](## Vim apps for MacOSX)
+- [Vim for shell](## Vim for shell)
+## See my vim keybindings and settings for VSCode in https://github.com/Perun108/my_notes_and_settings/tree/main/VSCode/VSCodeNeoVim and 
 
 ## Vim keybindings
 
@@ -92,6 +97,10 @@
 `I` lets you *i*nsert text at the beginning of a line  
 `A` lets you *a*ppend text at the end of a line  
 
+Additionally:
+`yyp` == `Yp` == `:t.Enter`
+`yyP` == `YP` == `:t-1Enter` == `:t-.`
+
 ## Use system clipboard
 
 https://superuser.com/questions/1726375/how-can-i-always-yank-text-to-clipboard
@@ -143,11 +152,63 @@ Breakdown:
     • `20` enters 20 into the buffer  
     • `G` goes to the line number in the buffer (Note that `G` means `Shift+g` (capital G))  
 
+## Advanced copying, deleting and moving (without moving or selecting, with +- lines numbers and :t/:d/:m)
+
+Adapted  from [https://jovica.org/posts/vim_advanced_copy/](https://jovica.org/posts/vim_advanced_copy/)
+
+Signs:
+minus (-) means above current line
+plus (+) means below current line
+no sign means absolute line number
+
+To copy a line without selecting, copying it and then pasting:
+
+If your cursor is on the line you want to copy/paste the current line 10 lines above: `:t-10`
+
+Copy/paste current line to 10 lines below: `:t+10`
+
+Copy/paste current line to absolute line 10: `:t10`
+
+To paste multiple lines *range* from N1 to N2 to some line N3 (use -/+ for relative number of lines above/below, no sign for absolute target line number for each N1, N2 or N3): `:N1,N2tN3`
+
+E.g. to copy/paste absolute lines from 3 to 7 to 5 lines below: `:3,7t+5`
+
+to copy/paste relative lines from 7 to 3 lines above current to 5 lines below: `:-7,-3t+5` (make sure to have range in correct order – from -7 to -3).
+
+to copy/paste relative lines from 3 to 7 lines below current to 5 lines above: `:+3,+7t-5` (make sure to have range in correct order – from -7 to -3).
+
+You can skip some of N to copy/paste lines directly above/below the current line immediately above/below it: `:-15,t` copies all lines from relative line 15 above the current up to the line immediately above the current to the line immediately below the current.
+
+You can use `:d` to delete lines in the same vein. Just use `''` to jump back to the previous position.
+
+Unfortunately, `:m[ove]` is not yet implemented in VSCode Vim extension! There is some hope it will be implemented because there is a commit for that and a couple of issues:
+[https://github.com/VSCodeVim/Vim/commit/958d598463e2767f3d067e09636701a61c31d348#diff-80801984c94d0f1db829e793854a3fe1720b7454d62b07898a4e705434b64b4b](https://github.com/VSCodeVim/Vim/commit/958d598463e2767f3d067e09636701a61c31d348#diff-80801984c94d0f1db829e793854a3fe1720b7454d62b07898a4e705434b64b4b)
+[https://github.com/VSCodeVim/Vim/issues/2472](https://github.com/VSCodeVim/Vim/issues/2472)
+[https://github.com/VSCodeVim/Vim/issues/8503](https://github.com/VSCodeVim/Vim/issues/8503)
+
 ## Change the same word multiple times
-navigate to the start of the word (`f`, `t`, `w` or similar), `c` with some motion (`f` till the last char of the word or `t` to the first char of the next word, etc), then again navigate to the next occurrence (`f`, `t`, etc.) and press `.` 
+
+Navigate to the start of the word (`f`, `t`, `w` or similar), `c` with some motion (`f` till the last char of the word or `t` to the first char of the next word, etc), then again navigate to the next occurrence (`f`, `t`, etc.) and press `.` 
 
 Or better: navigate to start of the word, press `c` then navigate to the last char of the word and cursor changes to insert mode, then type the new word and press `Esc`, then press `n` and `.`
 
+## Search and Replace
+
+Replace All:
+
+```
+:%s/foo/bar/g
+```
+
+Find each occurrence of `'foo'` (in all lines), and replace it with `'bar'`.
+
+For specific lines:
+
+```
+:6,10s/foo/bar/g
+```
+
+  
 ## Surroundings in Vim
 
 ### Copy text inside surrounding characters
@@ -203,31 +264,22 @@ The net effect is that you're quoting the 4th word of lines that have 4 or more 
 Move indentation to left for every line:
 `:%normal <<`
 
-## Vim vs NeoVim for VSCode
-NeoVim extension is slightly better in the following:
-- it’s a real nvim instance, not an emulator – so:
-- it’s faster (maybe)
-- you can add any plugin (can’t add plugins to Vim emulator!), but this is relatively irrelevant since I don’t really need to add plugins and Vim emulator already has every plugin I need.
-- you can execute any `:` command (Vim emulator doesn’t allow some commands)
-- you can navigate between explorer and split tabs with regular vim motions (`Ctrl+h/l`)
-- you can have very nice keybindings to `rename`, `create` and `delete` files and directories right within explorer! (this is really useful!!), to `split windows`, etc.  
+## Paste output of a shell command into a file without opening a terminal
 
-Cons:  
-- `Ctrl+d/u` doesn’t work in `git diff` window! (in works with Vim!)
-- when you move from explorer to tab with `Ctrl+l` sometimes (often or even always!) it drops you into `visual` mode or something and starts to select words and lines with simple `h/j/k/l` motions! (Very annoying!)
-- I had issues with motions after some time working in NeoVim plugin (`d$` didn’t work, motions didn’t go anywhere, strange character or whitespace selection that didn’t go away even after Space+n) and had to reload the window. You have to reload window in VSCode quite often because nvim starts misbehaving (just now I got stuck in `INSERT` mode and only `Ctrl+[` or `Ctrl+c` helped but until I again needed to go into insert mode and `Esc` didn't work).
-- VSCode crashes often when recording macros with NeoVim.
+`:r!<any shell command like cat>` will paste into the current file cursor position the output of any shell command (`:r!cat ~/.zshrc` will paste this file into current file)
 
-### VSCode features that are needed in any NeoVim IDE
-- multiple cursors (with option to specify case and whole words + to be able to add/remove occurrences)
-- inline git blame displayed with option to go to the commit
-- rename file in explorer
-- global find & replace in all code
+## Splits
+Taken from https://www.barbarianmeetscoding.com/boost-your-coding-fu-with-vscode-and-vim/splitting-windows/
 
-### Chris (LunarVim) keybindings (https://www.youtube.com/watch?v=g4dXZ0RQWdw)
+Splits are awesome. They allow you to divide your workspace into vertical and horizontal split windows:
 
-https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/settings.json
-https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/keybindings.json
+Use the `:sp {relative-path-to-file}` command to open a file in a horizontal split.
+Use the `:vsp {relative-path-to-file}` command to open a file in a vertical split.
+  
+Alternatively, instead of these `Ex` commands you can use:
+
+`<CTRL-W> S` to open horizontal split (mnemonic **W**indow and **S**plit).
+`<CTRL-W> V` to open a vertical split (mnemonic **V**ertical).
 
 `Ctrl+h/l`: move between explorer and editor or vertically split tabs  
 `Ctrl+j/k`: move between horizontally split tabs  
@@ -238,5 +290,25 @@ In explorer:
 `r`: rename file/directory  
 `K`: pop-up hover (same as hover with mouse)  
 
+## NeoVim
+### VSCode features that are needed in any NeoVim IDE
+- multiple cursors (with option to specify case and whole words + to be able to add/remove occurrences)
+- inline git blame displayed with option to go to the commit
+- rename file in explorer
+- global find & replace in all code
+
 ### LunarVim
+### Chris (LunarVim) keybindings (https://www.youtube.com/watch?v=g4dXZ0RQWdw)
+
 - if you can’t start `lvim` after installing `cargo` with standard methods (`curl https://sh.rustup.rs -sSf | sh` recommended in Rust dosumentation (https://doc.rust-lang.org/cargo/getting-started/installation.html) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` recommended here https://www.rust-lang.org/tools/install), it’s probably because it’s not added to `PATH` in `.zshrc`, so just add this line to `./zshrc`: `export PATH="${HOME}/.cargo/bin:${PATH}"` and then restart shell with `exec $SHELL`.
+
+https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/settings.json
+https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/keybindings.json
+## Vim apps for MacOSX
+
+https://kindavim.app/
+https://www.homerow.app/
+
+## Vim for shell
+
+Vim mode plugin for zsh: https://github.com/jeffreytse/zsh-vi-mode

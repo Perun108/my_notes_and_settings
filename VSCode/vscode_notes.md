@@ -8,12 +8,15 @@
     - [Make VS Code your default Merge Tool](#make-vs-code-your-default-merge-tool)
   - [Themes and Colors](#themes-and-colors)
   - [Custom settings](#custom-settings)
-    - [Change tabs with `ctrl+tab` without dropdown menu](#change-tabs-with-ctrltab-without-dropdown-menu)
     - [Fix `Alt` key behavior for some `zsh` plugins](#fix-alt-key-behavior-for-some-zsh-plugins)
     - [Auto copy selected text from terminal to clipboard](#auto-copy-selected-text-from-terminal-to-clipboard)
+    - [Make diff colors more distinct](### Make diff colors more distinct)
     - [How many lines are shown above/below cursor](#how-many-lines-are-shown-abovebelow-cursor)
-    - [Make diff colors more distinct](#make-diff-colors-more-distinct)
+   - [Vscode hotkeys](## Vscode hotkeys)
+    - [Change tabs with `ctrl+tab` without dropdown menu](#change-tabs-with-ctrltab-without-dropdown-menu)
     - [Navigate between Search results in the Side Bar and Editor with keyboard](#navigate-between-search-results-in-the-side-bar-and-editor-with-keyboard)
+    - [Navigate around splits and SideBar with keyboard](### Navigate around splits and SideBar with keyboard)
+    - [Tip for opening Command Palette, File Search, etc box](##**Tip for opening Command Palette, File Search, etc box**)
   - [Some links to settings, tips, tutorials](#some-links-to-settings-tips-tutorials)
   
 # My VSCode notes
@@ -135,25 +138,6 @@ Most beautiful themes:
 
 For the actual settings see [settings.json](my_vscode_settings.json)
 
-### Change tabs with `ctrl+tab` without dropdown menu
-
-Use the `Command Palette` with `CTRL+SHIFT+P`, enter `Preferences: Open Keyboard Shortcuts (JSON)`, and hit Enter.
-
-```json
-// Place your key bindings in this file to override the defaults
-[
-// ...
-{
-"key": "ctrl+tab",
-"command": "workbench.action.nextEditor"
-},
-{
-"key": "ctrl+shift+tab",
-"command": "workbench.action.previousEditor"
-}
-]
-```
-
 ### Fix Alt key behavior for some zsh plugins
 
 For some `zsh` plugins (like `dircycle`, `dirhistory`) to work you have to specify the following setting in `settings.json`:
@@ -202,6 +186,25 @@ Found on the internet
 
 ```Another slick move: You can insert a cursor at every instance of a selected piece of text by hitting Ctrl-Shift-L. You can also control the selection size of multiple cursors by pressing Shift-Alt and the left or right arrow.```
 
+### Change tabs with `ctrl+tab` without dropdown menu
+
+Use the `Command Palette` with `CTRL+SHIFT+P`, enter `Preferences: Open Keyboard Shortcuts (JSON)`, and hit Enter.
+
+```json
+// Place your key bindings in this file to override the defaults
+[
+// ...
+{
+"key": "ctrl+tab",
+"command": "workbench.action.nextEditor"
+},
+{
+"key": "ctrl+shift+tab",
+"command": "workbench.action.previousEditor"
+}
+]
+```
+
 ### Navigate between Search results in the Side Bar and Editor with keyboard
 https://stackoverflow.com/questions/69655369/what-is-the-keyboard-shortcut-for-jumping-into-search-results-in-visual-studio-c
 
@@ -245,6 +248,41 @@ If you'd like to have this (or other) key combination to act like two way "focus
   },
 ```
 
+
+### Navigate around splits and SideBar with keyboard
+https://stackoverflow.com/a/50593160/10466399
+
+If you're used to working in vim (and/or tmux) and want to move around with `ctrl+hjkl`
+
+add these to `keybindings.json`
+
+```
+[
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown"
+    }
+]
+```
+
+### Tip for opening Command Palette, File Search, etc box
+
+All (F1, Ctrl+Shift+P, Ctrl+P, Ctrl+G) actually open the same search box, just with a different prefix, ">" for search command, ":" for line number and no prefix for search file, @ for all items in your file – classes, attributes, methods, functions and variables
+
+Yep, and that can be useful for example when you accidentally did or dit not press the Shift key when pressing the Ctrl and P key. You don't have to Esc first, but just type or delete the colon or more-than-sign indeed.
+
 ***
 ## Some links to settings, tips, tutorials  
 https://code.visualstudio.com/docs/editor/editingevolved  
@@ -264,4 +302,4 @@ https://towardsdatascience.com/  top-3-vs-code-extensions-for-python-and-data-sc
 
 **VSCode and ML, DS, AI Resources**
 https://docs.microsoft.com/azure/machine-learning/service/how-to-vscode-tools  
-https://code.visualstudio.com/docs/python/data-science-tutorial  
+https://code.visualstudio.com/docs/python/data-science-tutorial
