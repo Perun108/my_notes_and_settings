@@ -23,7 +23,8 @@
   - [**Chris (LunarVim) keybindings (https://www.youtube.com/watch?v=g4dXZ0RQWdw)**](#chris-lunarvim-keybindings-httpswwwyoutubecomwatchvg4dxz0rqwdw)
 - [Vim apps for MacOSX](## Vim apps for MacOSX)
 - [Vim for shell](## Vim for shell)
-## See my vim keybindings and settings for VSCode in https://github.com/Perun108/my_notes_and_settings/tree/main/VSCode/VSCodeNeoVim and 
+
+See my vim keybindings and settings for VSCode in https://github.com/Perun108/my_notes_and_settings/tree/main/VSCode/VSCodeNeoVim and https://github.com/Perun108/my_notes_and_settings/blob/main/VSCode/VSCode%20Vim%20plugin.md
 
 ## Vim keybindings
 
@@ -97,9 +98,9 @@
 `I` lets you *i*nsert text at the beginning of a line  
 `A` lets you *a*ppend text at the end of a line  
 
-Additionally:
-`yyp` == `Yp` == `:t.Enter`
-`yyP` == `YP` == `:t-1Enter` == `:t-.`
+Additionally:  
+`yyp` == `Yp` == `:t.Enter  
+`yyP` == `YP` == `:t-1Enter` == `:t-.`  
 
 ## Use system clipboard
 

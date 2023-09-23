@@ -1,5 +1,5 @@
-Alt+Down == yyp == Yp == :t.Enter
-Alt+Up == yyP == YP == :t-1Enter == :t-.
+Alt+Down == yyp == Yp == :t.Enter  
+Alt+Up == yyP == YP == :t-1Enter == :t-.  
 ## Vim vs NeoVim for VSCode
 
 NeoVim extension is slightly better in the following:
@@ -23,43 +23,41 @@ Cons:
 Add zz to Ctrl+d/u to center cursor when scrolling half page:
 ```json
 {
-	"before": [
-		"<C-u>" 
-		],
-	"after": [
-		"<C-u>", "z", "z"
-		]
+"before": [
+"<C-u>" 
+],
+"after": [
+"<C-u>", "z", "z"
+]
 },
-{
-	"before": [
-		"<C-d>"
-		],
-	"after": [
-		"<C-d>", "z", "z"
-		]
+{"before": [
+"<C-d>"
+],
+"after": [
+"<C-d>", "z", "z
+]
 },
 ```
 
 Add `zz` to navigating to next/previous search result:
 ```json
-    {
-      "before": [ "n" ],
-      "after": [ "n", "z", "z" ]
-    },
-    {
-      "before": [ "N" ],
-      "after": ["N", "z", "z"]
-    }
-
-
+{
+"before": [ "n" ],
+"after": [ "n", "z", "z" ]
+},
+{
+"before": [ "N" ],
+"after": ["N", "z", "z"]
+}
 ```
+
 Bind `ctrl+n` to turn off search highlighting and `<leader>w` to save the current file:
 ```json
 {
-	"before":["<C-n>"],
-	"commands": [
-	":nohl",
-	]
+"before":["<C-n>"],
+"commands": [
+":nohl",
+]
 },
 ```
   
