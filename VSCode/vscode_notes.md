@@ -10,13 +10,15 @@
   - [Custom settings](#custom-settings)
     - [Fix `Alt` key behavior for some `zsh` plugins](#fix-alt-key-behavior-for-some-zsh-plugins)
     - [Auto copy selected text from terminal to clipboard](#auto-copy-selected-text-from-terminal-to-clipboard)
-    - [Make diff colors more distinct](### Make diff colors more distinct)
+    - [Make diff colors more distinct](#make-diff-colors-more-distinct)
     - [How many lines are shown above/below cursor](#how-many-lines-are-shown-abovebelow-cursor)
-   - [Vscode hotkeys](## Vscode hotkeys)
+   - [Vscode hotkeys](#vscode-hotkeys)
     - [Change tabs with `ctrl+tab` without dropdown menu](#change-tabs-with-ctrltab-without-dropdown-menu)
     - [Navigate between Search results in the Side Bar and Editor with keyboard](#navigate-between-search-results-in-the-side-bar-and-editor-with-keyboard)
-    - [Navigate around splits and SideBar with keyboard](### Navigate around splits and SideBar with keyboard)
-    - [Tip for opening Command Palette, File Search, etc box](##**Tip for opening Command Palette, File Search, etc box**)
+    - [Navigate around splits and SideBar with keyboard](#navigate-around-splits-and-sidebar-with-keyboard)
+    - [Create, delete, rename files in explorer without mouse](#create-delete-rename-files-in-explorer-without-mouse)
+    - [Tip for opening Command Palette, File Search, etc box](#tip-for-opening-command-palette-file-search-etc-box)
+  - [Fuzzy search within files](#fuzzy-search-within-files)
   - [Some links to settings, tips, tutorials](#some-links-to-settings-tips-tutorials)
   
 # My VSCode notes
@@ -277,13 +279,56 @@ add these to `keybindings.json`
 ]
 ```
 
+### Create, delete, rename files in explorer without mouse
+
+I added these shortcuts:
+
+While in File Explorer (Side Bar):
+`a`: create file  
+`A`: create directory  
+`r`: rename file/directory  
+`K`: pop-up hover (same as hover with mouse)  
+
 ### Tip for opening Command Palette, File Search, etc box
 
 All (F1, Ctrl+Shift+P, Ctrl+P, Ctrl+G) actually open the same search box, just with a different prefix, ">" for search command, ":" for line number and no prefix for search file, @ for all items in your file – classes, attributes, methods, functions and variables
 
 Yep, and that can be useful for example when you accidentally did or dit not press the Shift key when pressing the Ctrl and P key. You don't have to Esc first, but just type or delete the colon or more-than-sign indeed.
 
-***
+## Fuzzy search within files
+
+Tried to set up a fuzzy search within files. Installed this extension https://marketplace.visualstudio.com/items?itemName=rlivings39.fzf-quick-open
+and configured as is mentioned there:
+
+1. Installed `fzf`
+2. Installed `ripgrep`
+3. Installed `fd`
+4. Added `export FZF_DEFAULT_COMMAND='fd'` to my `~/.zshrc`
+5. Added to settings.json:
+```json
+  //* fzf rg extension settings
+  "fzf-quick-open.findDirectoriesCmd":"fd --type d",
+  "fzf-quick-open.ripgrepSearchStyle":"Smart case",
+```
+
+Now I can open Command Palette and type in `fzf rg` and select the command and it will ask me again what pattern I want to fuzzy search. After I hit enter it will open a `fzf` session in terminal and I can type additional search items or select the result (using arrows or `Ctrl+j/k`). 
+
+Unfortunately, it will add the command to zsh history every time I use this extension, so I searched for solution and found only this one that worked for me:
+https://stackoverflow.com/questions/76396431/keep-history-ignore-patterns-out-of-the-internal-history-buffer
+
+So, I added these lines to my `~/.zshrc`:
+
+```bash
+HISTORY_IGNORE='(rg *)'
+
+zshaddhistory() {
+  emulate -L zsh
+  [[ $1 != ${~HISTORY_IGNORE} ]]
+}
+```       
+
+(There is an issue on their GitHub but no activity there https://github.com/rlivings39/vscode-fzf-quick-open/issues/31)
+
 ## Some links to settings, tips, tutorials  
 https://code.visualstudio.com/docs/editor/editingevolved  
 Basic Editing: https://code.visualstudio.com/docs/editor/codebasics  

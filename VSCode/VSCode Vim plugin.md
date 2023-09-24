@@ -1,6 +1,20 @@
 Set up new keybinding for moving a line up/down - `Alt+j/k`:  
 `Alt+j` == `Alt+Down` == `yyp` == `Yp` == `:t.Enter`  
 `Alt+k` == `Alt+Up` == `yyP` == `YP` == `:t-1Enter` == `:t-.`  
+
+Unfortunately, many `Ex` commands (like`:m[ove]`, `:g`, `:sav`, etc) are not yet implemented in VSCode Vim extension! There is some hope it will be implemented because there is a commit for that and a couple of issues:
+[https://github.com/VSCodeVim/Vim/commit/958d598463e2767f3d067e09636701a61c31d348#diff-80801984c94d0f1db829e793854a3fe1720b7454d62b07898a4e705434b64b4b](https://github.com/VSCodeVim/Vim/commit/958d598463e2767f3d067e09636701a61c31d348#diff-80801984c94d0f1db829e793854a3fe1720b7454d62b07898a4e705434b64b4b)
+[https://github.com/VSCodeVim/Vim/issues/2472](https://github.com/VSCodeVim/Vim/issues/2472)
+[https://github.com/VSCodeVim/Vim/issues/8503](https://github.com/VSCodeVim/Vim/issues/8503)
+
+UPD: Actually, according to this comment https://github.com/VSCodeVim/Vim/issues/2346#issuecomment-568312141 you can enable (at least some) commands that are not yet supported in Vum extension but integrating it with `nvim` (no need to replace Vim extension with NeoVim extension). Just set these:
+
+```json
+{
+  "vim.enableNeovim":true,
+  "vim.neovimPath": "/opt/homebrew/bin/nvim", // Set this to your nvim path (`which nvim`)
+}
+```
 ## Vim vs NeoVim for VSCode
 
 NeoVim extension is slightly better in the following:

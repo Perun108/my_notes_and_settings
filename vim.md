@@ -1,6 +1,8 @@
 # Vim/NeoVim notes
 - [**Vim keybindings**](#vim-keybindings)
 - [**Use system clipboard**](#use-system-clipboard)
+- [**Motions (Navigation)**](#motions-navigation)
+  -[**g motions**](#g-motions)
 - [**Deleting words and characters**](#deleting-words-and-characters)
   - [**Delete the first 2 characters of every line**](#delete-first-2-characters-of-every-line-only-if-theyre-spaces)
   - [**Delete the same word/char on multiple lines**](#delete-the-same-wordchar-on-multiple-lines)
@@ -15,8 +17,8 @@
   - [**vim.surround plugin**](#vimsurround-plugin)
   - [**Surround words on multiple lines**](#surround-words-on-multiple-lines)
 - [**Indentation**](#indentation)
-- [**Paste output of a shell command into a file without opening a terminal**](#paste-output-of-a-shell-command-into-a-file-without-opening-a-terminal)
 - [**Splits**](#splits)
+- [**! (Bang) commands**](#bang-commands)
 - [**NeoVim**](#vim-vs-neovim-for-vscode)
   - [**VSCode features that are needed in any NeoVim IDE**](#vscode-features-that-are-needed-in-any-neovim-ide)
   - [**LunarVim**](#lunarvim)
@@ -99,8 +101,9 @@ See my vim keybindings and settings for VSCode in https://github.com/Perun108/my
 `A` lets you *a*ppend text at the end of a line  
 
 Additionally:  
-`yyp` == `Yp` == `:t.Enter  
-`yyP` == `YP` == `:t-1Enter` == `:t-.`  
+`yyp` == `Yp` == `:t.Enter`     
+`yyP` == `YP` == `:t-1Enter` == `:t-.`   
+`:sav <filepath>` will save the file under `filepath` name and path
 
 ## Use system clipboard
 
@@ -110,6 +113,13 @@ https://superuser.com/questions/1726375/how-can-i-always-yank-text-to-clipboard
 
 To delete something without saving it in a register, you can use the "black hole register": `"_d`  
 To copy/paste/delete using system clipboard without `:set` above just `"+y`/ `"+p` /`"+d`  
+
+## Motions (Navigation)
+
+### g motions
+`gd` go to definition
+`gf` go to file under cursor (e.g. /Users/kosperun/my_notes_and_settings/zsh.md)
+`gx` open a link under cursor with default browser
 
 ## Deleting words and characters
 
@@ -158,9 +168,9 @@ Breakdown:
 Adapted  from [https://jovica.org/posts/vim_advanced_copy/](https://jovica.org/posts/vim_advanced_copy/)
 
 Signs:
-minus (-) means above current line
-plus (+) means below current line
-no sign means absolute line number
+minus (-) means above current line  
+plus (+) means below current line  
+no sign means absolute line number  
 
 To copy a line without selecting, copying it and then pasting:
 
@@ -187,6 +197,15 @@ Unfortunately, `:m[ove]` is not yet implemented in VSCode Vim extension! There i
 [https://github.com/VSCodeVim/Vim/issues/2472](https://github.com/VSCodeVim/Vim/issues/2472)
 [https://github.com/VSCodeVim/Vim/issues/8503](https://github.com/VSCodeVim/Vim/issues/8503)
 
+UPD: Actually, according to this comment https://github.com/VSCodeVim/Vim/issues/2346#issuecomment-568312141 you can enable (at least some) commands that are not yet supported in Vum extension but integrating it with `nvim` (no need to replace Vim extension with NeoVim extension). Just set these:
+
+```json
+{
+  "vim.enableNeovim":true,
+  "vim.neovimPath": "/opt/homebrew/bin/nvim", // Set this to your nvim path (`which nvim`)
+}
+```
+
 ## Change the same word multiple times
 
 Navigate to the start of the word (`f`, `t`, `w` or similar), `c` with some motion (`f` till the last char of the word or `t` to the first char of the next word, etc), then again navigate to the next occurrence (`f`, `t`, etc.) and press `.` 
@@ -209,7 +228,6 @@ For specific lines:
 :6,10s/foo/bar/g
 ```
 
-  
 ## Surroundings in Vim
 
 ### Copy text inside surrounding characters
@@ -265,10 +283,6 @@ The net effect is that you're quoting the 4th word of lines that have 4 or more 
 Move indentation to left for every line:
 `:%normal <<`
 
-## Paste output of a shell command into a file without opening a terminal
-
-`:r!<any shell command like cat>` will paste into the current file cursor position the output of any shell command (`:r!cat ~/.zshrc` will paste this file into current file)
-
 ## Splits
 Taken from https://www.barbarianmeetscoding.com/boost-your-coding-fu-with-vscode-and-vim/splitting-windows/
 
@@ -276,8 +290,8 @@ Splits are awesome. They allow you to divide your workspace into vertical and ho
 
 Use the `:sp {relative-path-to-file}` command to open a file in a horizontal split.
 Use the `:vsp {relative-path-to-file}` command to open a file in a vertical split.
-  
-Alternatively, instead of these `Ex` commands you can use:
+
+These two commands take a filename as an argument. To split the current file use these:
 
 `<CTRL-W> S` to open horizontal split (mnemonic **W**indow and **S**plit).
 `<CTRL-W> V` to open a vertical split (mnemonic **V**ertical).
@@ -285,11 +299,15 @@ Alternatively, instead of these `Ex` commands you can use:
 `Ctrl+h/l`: move between explorer and editor or vertically split tabs  
 `Ctrl+j/k`: move between horizontally split tabs  
 
-In explorer:
-`a`: create file  
-`A`: create directory  
-`r`: rename file/directory  
-`K`: pop-up hover (same as hover with mouse)  
+## ! (Bang) commands
+
+`:r!<any shell command like cat>` will paste into the current file cursor position the output of any shell command (`:r!cat ~/.zshrc` will paste this file into current file)
+
+`:!sort` will sort selected (in visual mode) lines ASC
+
+`!!date` will insert current datetime (Sun 24 Sep 2023 13:23:09 EDT) and REPLACE the current line
+
+`!!sh` will run the command under cursor and REPLACE the line with its result
 
 ## NeoVim
 ### VSCode features that are needed in any NeoVim IDE
