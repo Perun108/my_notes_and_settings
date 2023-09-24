@@ -9,16 +9,16 @@
   - [**Delete a word under cursor**](#delete-a-word-under-cursor)
   - [**Delete all blank lines**](#delete-all-blank-lines)
 - [**Select (to copy) multiple lines in range**](#select-to-copy-multiple-lines-in-range)
-- [**Advanced copying, deleting and moving (without moving or selecting, with +- lines numbers and :t/:d/:m)**](#advanced-copying-deleting-and-moving-without-moving-or-selecting-with---lines-numbers-and-tdm)
+- [**Advanced copying, deleting and moving (without moving or selecting, with +/- lines numbers and `:t`/`:d`/`:m`)**](#advanced-copying-deleting-and-moving-without-moving-or-selecting-with---lines-numbers-and-tdm)
 - [**Change the same word multiple times**](#change-the-same-word-multiple-times)
 - [**Search and Replace**](#search-and-replace)
 - [**Surroundings in Vim**](#surroundings-in-vim)
   - [**Copy text inside surrounding characters**](#copy-text-inside-surrounding-characters)
-  - [**vim.surround plugin**](#vimsurround-plugin)
+  - [**`vim.surround` plugin**](#vimsurround-plugin)
   - [**Surround words on multiple lines**](#surround-words-on-multiple-lines)
 - [**Indentation**](#indentation)
 - [**Splits**](#splits)
-- [**! (Bang) commands**](#bang-commands)
+- [**`!` (Bang) commands**](#bang-commands)
 - [**NeoVim**](#vim-vs-neovim-for-vscode)
   - [**VSCode features that are needed in any NeoVim IDE**](#vscode-features-that-are-needed-in-any-neovim-ide)
   - [**LunarVim**](#lunarvim)
@@ -163,7 +163,7 @@ Breakdown:
     • `20` enters 20 into the buffer  
     • `G` goes to the line number in the buffer (Note that `G` means `Shift+g` (capital G))  
 
-## Advanced copying, deleting and moving (without moving or selecting, with +- lines numbers and :t/:d/:m)
+## Advanced copying, deleting and moving (without moving or selecting, with +- lines numbers and `:t`/`:d`/`:m`)
 
 Adapted  from [https://jovica.org/posts/vim_advanced_copy/](https://jovica.org/posts/vim_advanced_copy/)
 
@@ -236,7 +236,7 @@ If the text is surrounded by only one pair of quotes, in this case double quotes
 
 If the text is surrounded by more than one pair of quotes, however, we must first navigate to the innermost quote before we can copy the text inside. The command above will not work, since it will see the first two quotes with nothing in between them (""). The fastest way to navigate to the first quote is `f"`. Then, press `;` until the cursor is on the innermost quote, and we can now use `yib` (the `ib` command selects the inner block.) to copy the text inside!
 
-### vim.surround plugin
+### `vim.surround` plugin
 https://github.com/tpope/vim-surround
 
 Example to surround a word: `ysiw”`. This will surround the current word you are on with double quotes. To surround a selection you have made in visual or visual block mode, use `s”`. No need to start the command with `y`.
@@ -299,7 +299,7 @@ These two commands take a filename as an argument. To split the current file use
 `Ctrl+h/l`: move between explorer and editor or vertically split tabs  
 `Ctrl+j/k`: move between horizontally split tabs  
 
-## ! (Bang) commands
+## `!` (Bang) commands
 
 `:r!<any shell command like cat>` will paste into the current file cursor position the output of any shell command (`:r!cat ~/.zshrc` will paste this file into current file)
 
