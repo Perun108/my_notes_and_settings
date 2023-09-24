@@ -2,7 +2,7 @@
 - [**Vim keybindings**](#vim-keybindings)
 - [**Use system clipboard**](#use-system-clipboard)
 - [**Motions (Navigation)**](#motions-navigation)
-  -[**g motions**](#g-motions)
+  - [**`g` motions**](#g-motions)
 - [**Deleting words and characters**](#deleting-words-and-characters)
   - [**Delete the first 2 characters of every line**](#delete-first-2-characters-of-every-line-only-if-theyre-spaces)
   - [**Delete the same word/char on multiple lines**](#delete-the-same-wordchar-on-multiple-lines)
