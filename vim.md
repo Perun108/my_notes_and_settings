@@ -116,10 +116,10 @@ To copy/paste/delete using system clipboard without `:set` above just `"+y`/ `"+
 
 ## Motions (Navigation)
 
-### g motions
-`gd` go to definition
-`gf` go to file under cursor (e.g. /Users/kosperun/my_notes_and_settings/zsh.md)
-`gx` open a link under cursor with default browser
+### `g` motions
+`gd` go to definition  
+`gf` go to file under cursor (e.g. `~/my_notes_and_settings/zsh.md`)  
+`gx` open a link under cursor with default browser  
 
 ## Deleting words and characters
 
