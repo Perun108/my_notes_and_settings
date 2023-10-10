@@ -45,7 +45,7 @@ See my vim keybindings and settings for VSCode in https://github.com/Perun108/my
 `0`	(zero) start of line   
 `^`	first non-blank character of line    
 `$`	end of line   
-`G`	Go To command (prefix with number)  
+`G`	Go To command (prefix with number) (same as `gg`)  
 `i`	start insert mode at cursor  
 `I`	insert at the beginning of the line  
 `a`	append after the cursor  
@@ -222,11 +222,23 @@ Replace All:
 
 Find each occurrence of `'foo'` (in all lines), and replace it with `'bar'`.
 
+For the current line: `:s/foo/bar/` (no `%` sign)
+
 For specific lines:
 
 ```
 :6,10s/foo/bar/g
 ```
+
+Delimiter doesn't have to be `/` - it can be any symbol from the numeric row with Shift (`~``!@#$%^&*()-+=[]{}/?.,<>`, but not `_`, `\` or `|`)
+
+If you need to append something to a word you don't have to type it twice, just use `\0` to reference the search word in replace word:
+
+`:s/shift/shifted/` == `:s/shift/\0ed/`
+
+To replace something only on the lines that contain some pattern:
+
+`:g/<search pattern>/s/<old>/<new>` (e.g. to change `is` to `are` on lines containing `there`: `:g/there/s/is/are`)
 
 ## Surroundings in Vim
 
