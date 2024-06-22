@@ -131,9 +131,6 @@
     "python.analysis.indexing": true,
     // "python.formatting.provider": "none",
     "python.languageServer": "Pylance",
-    "python.analysis.extraPaths": [
-        "/Users/kosperun/loknow/Django/venv/lib/python3.9/site-packages/"
-    ],
     //* Formatters settings
     // "black-formatter.args": [
     //     "--line-length=120",
