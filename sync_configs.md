@@ -1,4 +1,4 @@
-I followed this setup: 
+I followed this setup:
 https://www.anand-iyer.com/blog/2018/a-simpler-way-to-manage-your-dotfiles/
 
 which is a version of this original post:
@@ -7,12 +7,34 @@ https://news.ycombinator.com/item?id=11070797
 I also utilized this post written on its basis:
 https://www.atlassian.com/git/tutorials/dotfiles
 
+---
+
+Here's what I did:
+
+```
+mkdir $HOME/.dotfiles
+git init --bare $HOME/.dotfiles
+alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+dotfiles config --local status.showUntrackedFiles no
+dotfiles remote add origin git@github.com:Perun108/dotfiles.git
+echo "alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
+```
+
+You can now use regular git commands with dotfiles command (add, commit, push, status, etc.)
+
+Another machine:
+
+```
+git clone --separate-git-dir=$HOME/.dotfiles https://github.com/Perun108/.dotfiles.git
+alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' # For MacOS it's `alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'`
+dotfiles config --local status.showUntrackedFiles no
+```
 
 Here's the version I used in case the post is deleted:
 
 A simpler way to manage your dotfiles
 May 5, 2018
-2018   ·   Tips  
+2018 · Tips  
 Like most folks, I use git to manage my dotfiles. This lets me have a versioned backup for my configurations, and if something breaks (and it does often for me) I can revert to a working configuration fairly easily. For a long time, I’ve followed the normal path of having a dotfiles folder and a script that symlinks into the files in it from my $HOME. Recently, I came across this thread in HackerNews and it literally blew my mind. In this post, I would like to share this very elegant solution that avoids the need for any symlinking.
 
 The key idea is really simple: make $HOME the git work-tree. The normal way of doing this would be to do a git init in your $HOME, but that would totally mess up git commands if you have other repositories in your $HOME (also, you probably don’t want your entire $HOME in a git repo). So, instead, we will create a dummy folder and initialize a bare repository (essentially a git repo with no working directory) in there. All git commands will be run with our dummy as the git directory, but $HOME as the work directory.
@@ -122,8 +144,8 @@ config checkout
     The step above might fail with a message like:
 
 error: The following untracked working tree files would be overwritten by checkout:
-    .bashrc
-    .gitignore
+.bashrc
+.gitignore
 Please move or remove them before you can switch branches.
 Aborting
 
@@ -163,15 +185,16 @@ function config {
 mkdir -p .config-backup
 config checkout
 if [ $? = 0 ]; then
-  echo "Checked out config.";
-  else
-    echo "Backing up pre-existing dot files.";
-    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+echo "Checked out config.";
+else
+echo "Backing up pre-existing dot files.";
+config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
 fi;
 config checkout
 config config status.showUntrackedFiles no
 
 ## Here's the original post if case the page is deleted:
+
 StreakyCobra on Feb 10, 2016 | next [–]
 
 I use:
@@ -192,14 +215,12 @@ where my ~/.myconf directory is a git bare repository. Then any file within the 
 And so one…
 
 No extra tooling, no symlinks, files are tracked on a version control system, you can use different branches for different computers, you can replicate you configuration easily on new installation.
-	
 seliopou on Feb 10, 2016 | parent | next [–]
 To complete the description of the workflow (for others), you can replicate your home directory on a new machine using the following command:
 
-   git clone --separate-git-dir=~/.myconf /path/to/repo ~
+git clone --separate-git-dir=~/.myconf /path/to/repo ~
 
 This is the best solution I've seen so far, and I may adopt it next time I get the itch to reconfigure my environment.
-	
 telotortium on Feb 11, 2016 | root | parent | next [–]
 For posterity, note that this will fail if your home directory isn't empty. To get around that, clone the repo's working directory into a temporary directory first and then delete that directory,
 
@@ -212,7 +233,6 @@ and then proceed as before.
 
 durdn on Feb 17, 2016 | root | parent | next [–]
 I found out exactly the same problem :)
-	
 durdn on Feb 17, 2016 | parent | prev | next [–]
 As promised I wrote a post about your setup. Thanks a lot for bringing the technique to my attention: https://developer.atlassian.com/blog/2016/02/best-way-to-sto...
 
@@ -236,7 +256,6 @@ Finally got mine working, it does need some figuring out especially the replicat
 
 durdn on Feb 17, 2016 | root | parent | next [–]
 I'll check how you did it. I wrote my notes and a couple of scripts down in a post: https://developer.atlassian.com/blog/2016/02/best-way-to-sto...
-	
 durdn on Feb 10, 2016 | root | parent | prev | next [–]
 Working on it! I'll give you full credit for it and link to this thread for reference. Also let me know if you have a Twitter account you'd like me to reference.
 
@@ -245,16 +264,12 @@ Nice thanks. I don't have twitter. Also don't present me as the inventor of this
 
 durdn on Feb 10, 2016 | root | parent | next [–]
 Alright I'll be careful in my wording ;).
-	
 wooptoo on Feb 10, 2016 | parent | prev | next [–]
 Why is this a bare repo as opposed to a normal one?
-	
 StreakyCobra on Feb 10, 2016 | root | parent | next [–]
 Because the working tree is already your home folder, you don't need to also have a copy of these files in ".myconf/".
-	
 idle_zealot on Feb 11, 2016 | root | parent | next [–]
 So why use .myconf/ at all? What is it doing?
-	
 telotortium on Feb 11, 2016 | root | parent | next [–]
 It contains the files that would normally be in .git (run `git help gitrepository-layout` for more details on the contents).
 
@@ -271,7 +286,6 @@ Anyway it's the proper root for config files, since if you use a .config directo
 
 nindalf on Feb 10, 2016 | root | parent | prev | next [–]
 You could add a symlink in your $HOME folder
-	
 qznc on Feb 10, 2016 | parent | prev | next [–]
 "branches for different computers" sounds tedious if most changes are for every computer.
 
@@ -280,18 +294,12 @@ I have a "master" branch, and some "computer" branches. When changes are require
 
 kavehmz on Feb 10, 2016 | parent | prev | next [–]
 You mean, you are also adding pushing your .ssh dir to a remote repo?
-	
 durdn on Feb 10, 2016 | root | parent | next [–]
 Not at all. You can 'git add' (or in the case of the technique above 'config add') only the files and folders that are safely stored in a repository. Because of the 'ShowUntrackedFiles' flag, git/config won't always show folders you don't want to track, which would be annoying.
 
 kavehmz on Feb 10, 2016 | root | parent | next [–]
 Perfect then,
-	
 abricot on Feb 10, 2016 | parent | prev | next [–]
 I'm confused - you can add files that are in a parent directory?
-	
 StreakyCobra on Feb 10, 2016 | root | parent | next [–]
 It's because we specify to git that the working tree is the home folder. For it the versionning doesn't happen in ".myconf", but directly in the home folder
-
-
-
