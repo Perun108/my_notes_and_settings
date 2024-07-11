@@ -5,6 +5,21 @@
 ### Show function signature when you type
 https://github.com/ray-x/lsp_signature.nvim
 
+
+### CamelCase and snake_case motions
+https://github.com/bkad/CamelCaseMotion
+
+It's no longer maps CamelCaseMotion to <leader>w/e/b/ge by default. 
+You need:
+
+```lua
+vim.g.camelcasemotion_key = '<leader>'
+vim.keymap.set("n", "<leader>w", "<Plug>CamelCaseMotion_w")
+vim.keymap.set("n", "<leader>b", "<Plug>CamelCaseMotion_b")
+vim.keymap.set("n", "<leader>e", "<Plug>CamelCaseMotion_e")
+vim.keymap.set("n", "<leader>ge", "<Plug>CamelCaseMotion_ge")
+```
+
 ### Save and open last opened files (buffers)
 https://github.com/folke/persistence.nvim)
 See also this demo: https://www.youtube.com/watch?v=Qf9gfx7gWEY&t=490s
