@@ -70,12 +70,10 @@ you can use <M-x> to map to Alt+x in insert mode, but it will again pop up when 
 Perhaps better to get used to it and don't pay much attention to that floating window.
 
 ### CamelCase and snake_case motions
-https://github.com/bkad/CamelCaseMotion
-
-It's no longer maps CamelCaseMotion to <leader>w/e/b/ge by default. 
-
-You need:
-
+I tried the more well-known https://github.com/bkad/CamelCaseMotion  
+but:
+1. It's no longer maps CamelCaseMotion to <leader>w/e/b/ge by default. 
+So you need:
 ```lua
 vim.keymap.set("n", "\\w", "<Plug>CamelCaseMotion_w")
 vim.keymap.set("n", "\\b", "<Plug>CamelCaseMotion_b")
@@ -83,6 +81,12 @@ vim.keymap.set("n", "\\e", "<Plug>CamelCaseMotion_e")
 vim.keymap.set("n", "\\ge", "<Plug>CamelCaseMotion_ge")
 ```
 I could not use this (it didn't work): `vim.g.camelcasemotion_key = '\\'`
+2. I cound't get it to work with `c` and `d` - only motions would work, 
+but not editing/deleting parts of CamelCase words.
+
+So, I found this wonderful plugin: https://github.com/chaoren/vim-wordmotion  
+
+I just set `vim.g.wordmotion_prefix="\\"` and it all worked as I need!
 
 ### Save and open last opened files (buffers)
 At first I used persistence and would open last session with <leader>Ss
