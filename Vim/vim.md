@@ -16,13 +16,10 @@
   - [**Copy text inside surrounding characters**](#copy-text-inside-surrounding-characters)
   - [**`vim.surround` plugin**](#vimsurround-plugin)
   - [**Surround words on multiple lines**](#surround-words-on-multiple-lines)
-- [**Indentation**](#indentation)
+- [**Diffs in vim/nvim**](#diff-in-vim/neovim)
+- [**Indentation**](#indentatgon)
 - [**Splits**](#splits)
 - [**`!` (Bang) commands**](#bang-commands)
-- [**NeoVim**](#vim-vs-neovim-for-vscode)
-  - [**VSCode features that are needed in any NeoVim IDE**](#vscode-features-that-are-needed-in-any-neovim-ide)
-  - [**LunarVim**](#lunarvim)
-  - [**Chris (LunarVim) keybindings (https://www.youtube.com/watch?v=g4dXZ0RQWdw)**](#chris-lunarvim-keybindings-httpswwwyoutubecomwatchvg4dxz0rqwdw)
 - [**Vim apps for MacOSX**](#vim-apps-for-macosx)
 - [**Vim for shell**](#vim-for-shell)
 
@@ -46,6 +43,11 @@ See my vim keybindings and settings for VSCode in https://github.com/Perun108/my
 `^`	first non-blank character of line    
 `$`	end of line   
 `G`	Go To command (prefix with number) (same as `gg`)  
+`H` move to top of screen  
+`M` move to middle of screen 
+`L` move to bottom of screen  
+`Ctrl+e` move screen down one line (without moving cursor)  
+`Ctrl+y` move screen up one line (without moving cursor)  
 `i`	start insert mode at cursor  
 `I`	insert at the beginning of the line  
 `a`	append after the cursor  
@@ -54,16 +56,20 @@ See my vim keybindings and settings for VSCode in https://github.com/Perun108/my
 `O`	open blank line above current line  
 `ea`	append at end of word  
 `r`	replace a single character (does not use insert mode)  
+`R` replace more than one character, until ESC is pressed  
 `J`	join line below to the current one  
-`cc`	change (replace) an entire line  
+`cc`	change (replace) an entire line (same as `S`)  
 `cw`	change (replace) to the end of word  
-`c$`	change (replace) to the end of line  
-`s`	delete character at cursor and subsitute text  
-`S`	delete line at cursor and substitute text (same as `cc`)  
+`c$`	change (replace) to the end of line (same as `C`)  
+`s`	delete character at cursor and start Insert mode  
+`S`	delete line at cursor and start Insert mode (same as `cc`)  
 `yy`	yank (copy) a line  
 `2yy`	yank 2 lines  
 `yw`	yank word  
-`y$`	yank to end of line  
+`y$` or `Y` yank (copy) to end of line  
+`yiw` yank (copy) word under the cursor
+`yaw` yank (copy) word under the cursor and the space after or before it
+`yip` copy entire paragraph
 `p`	put (paste) the clipboard after cursor  
 `P`	put (paste) before cursor  
 `dd`	delete (cut) a line  
@@ -74,18 +80,24 @@ See my vim keybindings and settings for VSCode in https://github.com/Perun108/my
 `:q`	quit (fails if anything has changed)  
 `:q!`	quit and throw away changes  
 
-2. File/window hotkeys:  
+2. Buffers/Tabs/Files/Windows hotkeys:  
 `/pattern`	search for pattern  
 `?pattern`	search backward for pattern  
+`/pattern\c` - case insensitive search (default)  
+`/pattern\C` - case sensitive search  
 `n`		repeat search in same direction  
 `N`		repeat search in opposite direction  
-`:e filename`	Edit a file in a new buffer  
+`:e filename`	Edit (create) a file in a new buffer  
 `:bnext` (or `:bn`)	go to next buffer  
 `:bprev` (of `:bp`)	go to previous buffer  
 `:bd`		delete a buffer (close a file)  
+`:b<number>` - go to buffer N
+`:b#` or `Ctrl+6` - switch between two last opened buffers
 `:sp filename`	Open a file in a new buffer and split window  
+
+Splits:
 `ctrl+ws`		Split windows  
-`ctrl+ww`		switch between windows  
+`ctrl+ww`		Switch between windows  (same as `Ctrl+h/j/k/l/`)
 `ctrl+wq`   	Quit a window  
 `ctrl+wv`		Split windows vertically  
 
@@ -105,7 +117,11 @@ Additionally:
 `yyP` == `YP` == `:t-1Enter` == `:t-.`   
 `:sav <filepath>` will save the file under `filepath` name and path
 
-## Use system clipboard
+## Registers
+
+`:reg` view registers contents
+
+### Use system clipboard
 
 https://superuser.com/questions/1726375/how-can-i-always-yank-text-to-clipboard
 
@@ -116,10 +132,20 @@ To copy/paste/delete using system clipboard without `:set` above just `"+y`/ `"+
 
 ## Motions (Navigation)
 
+`[[` or `]]` go to prev/next class definition
+`[m` or `]m` go to prev/next function definition
+``.` go to the position of the last change in this file 
+`25|` go to 25th column in a line in normal mode
+`$3h` go to the end and then 3 characters to the left ($2b, etc.)
+
 ### `g` motions
 `gd` go to definition  
 `gf` go to file under cursor (e.g. `~/my_notes_and_settings/zsh.md`)  
 `gx` open a link under cursor with default browser  
+`gt` go to the next tab
+`gT` go to the previous tab 
+`gj` go cursor down (multi-line text) 
+`gk` go cursor up (multi-line text)
 
 ## Deleting words and characters
 
@@ -145,8 +171,29 @@ If you're in the middle of a word,
 `dw` will delete from the cursor to the end of the word, while  
 `daw` will delete the entire word along with a space.  
 `diw` will delete the entire word without touching whitespace around it.  
+`:3,5d` - delete lines starting from 3 to 5  
+Tip: You can also use the following characters to specify the range:  
+`:.,$d` - From the current line to the end of the file  
+`:.,1d` - From the current line to the beginning of the file  
+`:10,$d` - From the 10th line to the beginning of the file  
+`di(` or `dib` - delete inside parentheses  
+`da(` or `dab` - delete text inside parentheses (including parentheses)  
+`di{` or `diB` - delete inside braces  
+`da{` or `daB` - delete text inside braces (including braces)  
+`di[` - delete inside brackets  
+`da[` - delete text inside brackets (including brackets)  
+`di"` - delete inside quotes  
+`da"` - delete a quoted text (including quotes)  
+`dit` - delete inside tag  
+`dat` - delete a tag (including tag)  
+`dip` - delete entire paragraph  
 
-### Delete all blank lines
+
+### Delete lines
+`:g/{pattern}/d` - delete all lines containing pattern
+`:g!/{pattern}/d` - delete all lines not containing pattern 
+
+Delete all blank lines
 `:g/^$/d` - Remove all blank lines. The pattern `^$` matches all empty lines.  
 `:g/^\s*$/d` - Remove all blank lines. Unlike the previous command, this also removes the blank lines that have zero or more whitespace characters (`\s*`).  
 
@@ -240,6 +287,9 @@ To replace something only on the lines that contain some pattern:
 
 `:g/<search pattern>/s/<old>/<new>` (e.g. to change `is` to `are` on lines containing `there`: `:g/there/s/is/are`)
 
+`:%s/old/new/g` - replace all old with new throughout file  
+`:%s/old/new/gc` - replace all old with new throughout file with confirmations  
+
 ## Surroundings in Vim
 
 ### Copy text inside surrounding characters
@@ -291,6 +341,11 @@ Here the `\(...\)` defines a group of non-whitespace followed by whitespace, the
 
 The net effect is that you're quoting the 4th word of lines that have 4 or more words.
 
+## Diffs in vim/neovim
+
+To compare two files in neovim:
+`vim/nvim/lvim /path/to/file1 /path/to/file2 -d`
+
 ## Indentation
 Move indentation to left for every line:
 `:%normal <<`
@@ -305,11 +360,21 @@ Use the `:vsp {relative-path-to-file}` command to open a file in a vertical spli
 
 These two commands take a filename as an argument. To split the current file use these:
 
-`<CTRL-W> S` to open horizontal split (mnemonic **W**indow and **S**plit).
-`<CTRL-W> V` to open a vertical split (mnemonic **V**ertical).
+`<CTRL-W> s` to open horizontal split (mnemonic **W**indow and **S**plit).
+`<CTRL-W> v` to open a vertical split (mnemonic **V**ertical).
 
 `Ctrl+h/l`: move between explorer and editor or vertically split tabs  
 `Ctrl+j/k`: move between horizontally split tabs  
+
+`ZZ` or `Ctrl+wq` - quit a window (`ZQ` without saving)  
+
+## Folds  
+`zf` - manually define a fold up to motion (fold three lines: zf3j or zf3Enter)
+`za` - toggle fold under the cursor
+
+##  Visual mode (Marking text)  
+`o` - move to other end of marked area  
+`O` - move to other corner of block  
 
 ## `!` (Bang) commands
 
@@ -321,20 +386,6 @@ These two commands take a filename as an argument. To split the current file use
 
 `!!sh` will run the command under cursor and REPLACE the line with its result
 
-## NeoVim
-### VSCode features that are needed in any NeoVim IDE
-- multiple cursors (with option to specify case and whole words + to be able to add/remove occurrences)
-- inline git blame displayed with option to go to the commit
-- rename file in explorer
-- global find & replace in all code
-
-### LunarVim
-### Chris (LunarVim) keybindings (https://www.youtube.com/watch?v=g4dXZ0RQWdw)
-
-- if you can’t start `lvim` after installing `cargo` with standard methods (`curl https://sh.rustup.rs -sSf | sh` recommended in Rust dosumentation (https://doc.rust-lang.org/cargo/getting-started/installation.html) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` recommended here https://www.rust-lang.org/tools/install), it’s probably because it’s not added to `PATH` in `.zshrc`, so just add this line to `./zshrc`: `export PATH="${HOME}/.cargo/bin:${PATH}"` and then restart shell with `exec $SHELL`.
-
-https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/settings.json
-https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/keybindings.json
 ## Vim apps for MacOSX
 
 https://kindavim.app/

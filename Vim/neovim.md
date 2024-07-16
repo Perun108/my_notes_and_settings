@@ -192,6 +192,18 @@ https://github.com/tpope/vim-surround
 https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md
 
 I used the first one and kind of got used to it, althoug the second one may seem simpler in terms of keystrokes.
+
+### Git plugins
+https://github.com/lewis6991/gitsigns.nvim has built-in support for inline git-blame,
+but I like https://github.com/f-person/git-blame.nvim much better - 
+you can open commit URLs (I bound a U key to leader-g where LunarVim has Git to this).
+It also allows you to set [c ]c to navigate between changed hunks in a buffer!
+
+I tried https://github.com/airblade/vim-gitgutter, 
+but built-in gitsigns is much better integrated with other gutter plugins like LSP
+
+https://github.com/rhysd/conflict-marker.vim - Doesn't work for me with any theme...
+
 ## Colors
 ### Customize highlights after setting the colorscheme
 Example of changing color for selection (Visual mode)
