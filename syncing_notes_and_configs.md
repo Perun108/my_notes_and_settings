@@ -20,6 +20,33 @@ Follow official guide: https://docs.syncthing.net/intro/getting-started.html
 
 #IMPORTANT! Sync won't start for mobile devices at this point - you have to open Web UI on your phone from the syncthing Android client-> Settings and `Add new folder` in the prompt that you'll see there and then enter the path to your sync folder on your phone!
 
+You can also set up git version contro system for the synced notes for backup and automate it with cron:
+- Create a repo on Github
+- Initialize a git repo inside your synced folder (add `.obsidian/` and `.stfolder/` to `.gitignore`)
+- Set up remove url and origin branch as usual
+- Create a `sh` file inside the folder:
+
+```bash
+#!/bin/bash
+
+# Add all changes to the staging area
+git add .
+
+# Check if there are any changes to be committed
+if ! git diff-index --quiet HEAD --; then
+  # Commit and push changes if there are any
+  git commit -m "Auto-commit $(date)"
+  git push origin main
+else
+  echo "No changes to commit."
+fi
+```
+- Make it executable: `chmod +x ~/Documents/MyObsidianSync/cron_push_script.sh`
+- Open cron: `crontab -e`
+- Add cron job into the cron file (I added it to run at noon every sunday):
+`0 12 * * 6 ~/Documents/MyObsidianSync/cron_push_script.sh`
+- Check that it was added to the schedule: `crontab -l`
+
 # Sync dotfiles with a special git bare repo and alias
 
 I tried this setup and didn't like it. It sounds promising but I found it hard to maintain and potentially prone to issues.
