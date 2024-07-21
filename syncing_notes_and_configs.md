@@ -1,3 +1,29 @@
+# Using SyncThing to sync notes, folders (Obsidian, etc.)
+
+Follow official guide: https://docs.syncthing.net/intro/getting-started.html
+
+## What I did
+- Install syncthing on all machines that you want to sync (Linux, Android, Mac, etc.) and run it on all of them (Run `syncthing` from the terminal on Linux or Mac and it will open a Web UI in browser)
+- On the first machine (laptop):
+    - Create a folder where you want to keep all your data to be synced (`mkdir ~/Documents/MyObsidianNotesBackUp/`)
+    - Add this folder to SyncThing Web UI (on the right, where the local folders are)
+    - Give it a name (`MyNotes-Ubuntu`)
+    - Click `Add remote device`
+    - If you have syncthing open on another machine it will suggest its ID under `Device ID` (` You can also select one of these nearby devices: `)
+    - Select suggested device ID or enter its ID from the other machine
+    - Give it a name (`MyNotes-Android`)
+    - Go to `Sharing` tab and check your local folder name (`MyNotes-Ubuntu`)
+    - Click on `Identification` to display the first device's QR code. Scan it with the second device (if it's your phone) or enter the ID into the second device.
+    - Create a similar folder on the other device
+    - Open syncthing on the other device and go to `Folders` and add the path to that new folder there.
+    - Go to `Devices` and open QR scanner to add the first device.
+
+#IMPORTANT! Sync won't start for mobile devices at this point - you have to open Web UI on your phone from the syncthing Android client-> Settings and `Add new folder` in the prompt that you'll see there and then enter the path to your sync folder on your phone!
+
+# Sync dotfiles with a special git bare repo and alias
+
+I tried this setup and didn't like it. It sounds promising but I found it hard to maintain and potentially prone to issues.
+
 I followed this setup:
 https://www.anand-iyer.com/blog/2018/a-simpler-way-to-manage-your-dotfiles/
 
