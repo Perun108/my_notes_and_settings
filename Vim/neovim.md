@@ -1,6 +1,7 @@
 # NeoVim and LunarVim
 
 ## Installation
+
 How I installed nvim in Ubuntu
 
 I `rm -rf` all directories related to `nvim`
@@ -113,7 +114,9 @@ wk.mappings["bu"] = { "<cmd>lua Reopen_last_closed_buffer()<CR>", "Re-open last 
 ```
 
 ## Telescope
+
 ### Useful pickers
+
 buffers
 command_history
 search history or resume (see what's better)
@@ -368,6 +371,16 @@ vim.cmd [[
     autocmd ColorScheme sonokai highlight Visual guibg=#fef5e7  
   augroup END
 ]]
+
+## Working with different layouts (languages)
+You can specify `vim.opt.keymap = 'ukrainian-jcuken'` and it will use Ukrainian layout for Insert mode, but English for all the rest. 
+You can switch layouts (2 only) in Insert mode with `Ctrl+6`.
+
+To see all layouts in vim: `:e $VIMRUNTIME/keymap`
+
+Taken from here:
+https://stackoverflow.com/questions/3776728/how-to-avoid-constant-switching-to-and-from-english-keyboard-layout-to-type-vim
+https://www.reddit.com/r/vim/comments/ijgm0w/using_vim_with_nonlatin_language/
 
 ## VSCode features that are needed in any NeoVim IDE
 - multiple cursors (with option to specify case and whole words + to be able to add/remove occurrences)
