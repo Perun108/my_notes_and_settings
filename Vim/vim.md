@@ -81,12 +81,7 @@ See my vim keybindings and settings for VSCode in https://github.com/Perun108/my
 `:q!`	quit and throw away changes  
 
 2. Buffers/Tabs/Files/Windows hotkeys:  
-`/pattern`	search for pattern  
-`?pattern`	search backward for pattern  
-`/pattern\c` - case insensitive search (default)  
-`/pattern\C` - case sensitive search  
-`n`		repeat search in same direction  
-`N`		repeat search in opposite direction  
+Buffers
 `:e filename`	Edit (create) a file in a new buffer  
 `:bnext` (or `:bn`)	go to next buffer  
 `:bprev` (of `:bp`)	go to previous buffer  
@@ -100,6 +95,10 @@ Splits:
 `ctrl+ww`		Switch between windows  (same as `Ctrl+h/j/k/l/`)
 `ctrl+wq`   	Quit a window  
 `ctrl+wv`		Split windows vertically  
+`:vs#`          Split current window vertically and open the alternate file
+
+Resize:
+`Ctrl+w+Left/Right` for vertical splits and `Up/Down` for horizontal (holding `Ctrl`)
 
 `x` is equivalent to `dl` and deletes the character under the cursor  
 `X` is equivalent to `dh` and deletes the character before the cursor  
@@ -260,7 +259,12 @@ Navigate to the start of the word (`f`, `t`, `w` or similar), `c` with some moti
 Or better: navigate to start of the word, press `c` then navigate to the last char of the word and cursor changes to insert mode, then type the new word and press `Esc`, then press `n` and `.`
 
 ## Search and Replace
-
+`/pattern`	search for pattern  
+`?pattern`	search backward for pattern  
+`/pattern\c` - case insensitive search (default)  
+`/pattern\C` - case sensitive search  
+`n`		repeat search in same direction  
+`N`		repeat search in opposite direction  
 Replace All:
 
 ```
