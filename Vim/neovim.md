@@ -325,6 +325,11 @@ I used the first one and kind of got used to it, althoug the second one may seem
 https://github.com/epwalsh/obsidian.nvim
 https://www.reddit.com/r/neovim/comments/18qcyah/notetaking_with_nvim_and_obsidian/
 
+### Plugins to help learn and practice Vim
+https://github.com/m4xshen/hardtime.nvim
+https://www.reddit.com/r/neovim/comments/14jferq/hardtimenvim_a_neovim_plugin_helping_you/
+Good thing is this plugin disables Arrow Keys by default.
+
 ### Git plugins
 https://github.com/lewis6991/gitsigns.nvim has built-in support for inline git-blame,
 but I like https://github.com/f-person/git-blame.nvim much better - 
