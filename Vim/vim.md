@@ -145,6 +145,7 @@ To copy/paste/delete using system clipboard without `:set` above just `"+y`/ `"+
 `gT` go to the previous tab 
 `gj` go cursor down (multi-line text) 
 `gk` go cursor up (multi-line text)
+`gx` open a link under cursor with browser (Very useful for opening a PR on GitHub after pushing (just like in VSCode)).
 
 ## Deleting words and characters
 

@@ -133,6 +133,13 @@ What's difference between fd and findfiles?
 
 If you get that `gr` or `Telescope lsp_references` does not work: `method textDocument/references is not supported by any of the servers registered for the current buffer` - upgrade or install the newest node version (use nvm!)
 
+### Telescope-frecency
+I tried telescope-frecency, but I'm not sure if it's the best solution for me: 
+1) It does not display buffer numbers that you can enter to switch to that buffer as telescope does
+2) I'm not sure I need a 'frequent' metrics here, I just usually need the recent files list (like VSCode does).
+So, for that for now I try to use this:
+`wk.mappings["bs"] = { "<cmd>Telescope buffers sort_mru=true<CR>", "Select Buffer" }`
+
 ## StatusLine (LuaLine)
 
 https://www.lunarvim.org/docs/configuration/appearance/statusline
@@ -223,6 +230,9 @@ https://github.com/rmagatti/auto-session
 ### Multi-file Search and Replace
 https://github.com/nvim-pack/nvim-spectre
 https://www.youtube.com/watch?v=YzVmdJ41Xkg&t=194s
+
+For multifile use telescope, search for some text that you want to replace (e.g.`repace_this`),
+then `<C-q>` opens in quick fix window, then `:cdo s/replace_this/with_this/g`
 
 ### Code Structure and Breadcrumbs
 
@@ -343,6 +353,13 @@ https://github.com/smartpde/telescope-recent-files
 I could not get it to work properly although is sounds promising:
 https://github.com/dzfrias/arena.nvim
 
+### Pluging that I tried and didn't use
+
+#### Lazygit
+
+
+I think it's useful in some cases, but I prefer using terminal commands - it gives me auto suggestions for commit messages from previous commits and also when pre-commit hooks fail I don't have to re-add all the files again - I just repeat the previous command in terminal and I don't have to enter the same commit message again - I repeat the same command from the terminal.  It's useful for fixing up or squashing commits in rebase, for cherry picking commits, for a very simple and straightforward add commit push flow (just press space on the top level of files, c+ commit message and P). 
+
 ## Colors
 
 ### Customize a colorschema without modifying it directly (with autocommands)
@@ -439,3 +456,18 @@ https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e784
 
 ## Tips and Tricks
 https://blog.devgenius.io/editing-in-lunar-vim-is-magic-17-more-lvim-tips-and-tricks-598ba7f4f6d6
+
+### M key on Mac
+
+https://www.lunarvim.org/docs/beginners-guide/keybinds-overview
+iTerm2: go to Settings->Profiles-Keys and set Option to be `Esc+` in your profile (not just default profile, play with the profiles there if you don't know which profile is currently used).
+
+#### Opening files in normal mode
+
+When running tests, you can go to the specific test by searching its name (`leader+s+w` in my setup) and then Telescope is opened with your file. Need also to consider going to a file (`gf`) by selecting the path to the test (without the test class name etc.) but that does not work yet without `.py` in the end (look for some plugins).
+
+
+#### Keymaps
+Bind bn and bp to ctrl+tab? Doesn't work well in some terminals (didn't work in iTerm2 on Mac)
+
+
