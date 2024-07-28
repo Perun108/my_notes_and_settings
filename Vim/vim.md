@@ -100,6 +100,16 @@ Splits:
 Resize:
 `Ctrl+w+Left/Right` for vertical splits and `Up/Down` for horizontal (holding `Ctrl`)
 
+Folds
+`zf` Create a fold (with selected text or text objects like `zfap`, or with motions like `zf3]]`.
+`zo` open a fold
+`zc` close a fold
+`za` toggle fold (like zo and zc together)
+`zO` open all folds until current level
+`zC` close all folds until current level
+`zM` open all folds in file
+`zR` close all folds in file
+
 `x` is equivalent to `dl` and deletes the character under the cursor  
 `X` is equivalent to `dh` and deletes the character before the cursor  
 `s` is equivalent to `ch`, deletes the character under the cursor and puts you into Insert mode  
