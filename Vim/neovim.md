@@ -2,6 +2,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Installation](#installation)
+* [Fonts](#fonts)
 * [LazyVim](#lazyvim)
 * [Buffers](#buffers)
   * [Navigation between opened buffers](#navigation-between-opened-buffers)
@@ -74,6 +75,15 @@ It downloaded it to the `Downloads` folder, so I moved it to a dedicated directo
 
 Created a symlink to a directory on `PATH` to start nvim with just `nvim`:
 `sudo ln -s ~/.nvim/nvim.appimage /usr/local/bin/nvim`
+
+## Fonts
+
+I like the following fonts:
+<https://www.nerdfonts.com/font-downloads>
+
+* `SourceCodePro (10)` - there is a Nerd variant at the link above
+* `Ubuntu Mono Nerd` from the same link is also good
+* `Monaco` font for MacOSX
 
 ## LazyVim
 

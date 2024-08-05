@@ -1,4 +1,5 @@
 # My zsh notes
+
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Install oh-my-zsh](#install-oh-my-zsh)
@@ -31,15 +32,15 @@
 
 ## **Installation**
 
-Nice guide: https://medium.com/wearetheledger/oh-my-zsh-made-for-cli-lovers-installation-guide-3131ca5491fb 
+Nice guide: <https://medium.com/wearetheledger/oh-my-zsh-made-for-cli-lovers-installation-guide-3131ca5491fb>
 
-1. Install zsh:   
-Arch: `sudo pacman -S zsh`   
-Ubuntu: `sudo apt install zsh`   
+1. Install zsh:
+Arch: `sudo pacman -S zsh`
+Ubuntu: `sudo apt install zsh`
 
-2. Change shell: `chsh -s $(which zsh)`   
+2. Change shell: `chsh -s $(which zsh)`
 
-3. Log out and log back in again to use your new default shell. 
+3. Log out and log back in again to use your new default shell.
 
 4. Test that it worked: `echo $SHELL`  
 Expected result: `/bin/zsh` or similar.  
@@ -89,6 +90,7 @@ Please pick one of the following options:
 (q)  Quit and do nothing else.  The function will be run again next time.
 --- Type one of the keys in parentheses --- 
 ```
+
 1→
 
 ```
@@ -161,7 +163,7 @@ Change theme to `agnoster` in `~/.zshrc`
 ```plugins=(aliases dirhistory dircycle web-search zsh-z copybuffer copypath colored-man-pages extract autoupdate)```
 
 **aliases**  
-https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases  
+<https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases>  
 • acs: show all aliases by group.  
 • acs <keyword>: filter aliases by <keyword> and highlight.  
 
@@ -178,7 +180,7 @@ copies the absolute path of the current directory.
 `copypath <file_or_directory>`: copies the absolute path of the given file.
 
 **dircycle**  
-https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dircycle  
+<https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dircycle>  
 Plugin for cycling through the directory stack  
 
 This plugin enables directory navigation similar to using back and forward on browsers or common file explorers like `Finder` or `Nautilus`. It uses a small `zle` trick that lets you cycle through your directory stack left or right using `Ctrl + Shift + Left / Right` . This is useful when moving back and forth between directories in development environments, and can be thought of as kind of a nondestructive `pushd`/`popd`.  
@@ -186,7 +188,7 @@ This plugin enables directory navigation similar to using back and forward on br
 **NOTE:** For this plugin to work in VS Code you have to specify the following setting in `settings.json`: `"terminal.integrated.sendKeybindingsToShell": true,` otherwise it will not work (due to the `Alt` key integrated terminal bindings).
 
 **dirhistory**  
-https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory  
+<https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory>  
 This plugin allows you to navigate the history of previous working directories using `Alt + Left` and `Alt + Right`. `Alt + Left` moves to past directories, and `Alt + Right` goes back to recent directories.
 
 **NOTE:** Does not work well in VSCode integrated terminal (due to `Alt` keybindings), but works well in other terminals.
@@ -208,17 +210,28 @@ For some `zsh` plugins (like `dircycle`, `dirhistory`) to work you have to speci
 ```
 
 ## **Customizations**  
-Follow documentation for customizing plugins and themes: https://github.com/ohmyzsh/ohmyzsh/wiki/Customization  
+
+Follow documentation for customizing plugins and themes: <https://github.com/ohmyzsh/ohmyzsh/wiki/Customization>  
 
 ```
 Remember that customizations always take precedence over built-ins. If you happen to enjoy a particular theme that comes packaged with oh-my-zsh, but would like to change just a little detail inside of it – let's say you love the agnoster theme, it will be the easiest to copy the agnoster.zsh-theme file to your custom/themes directory and customize it. If you don't change its filename, your .zshrc file can stay the same: ZSH_THEME="agnoster" will be perfect and still take your changes into account.
 ```
 
-Therefore, before doing what follows below I copied `~/.oh-my-zsh/themes/agnoster.zsh-theme` to `~/.oh-my-zsh/custom/themes/agnoster.zsh-theme` and worked with that custom theme (specifically, commented out the line with `prompt_context` as is described below). Otherwise you'll have problems updating zsh because the oh-my-zsh directory is a git repository and you shouldn't change it without committing and merging. Whereas `custom` directory is ignored by git ("By default git is set to ignore the custom directory, so that oh-my-zsh's update process does not interfere with your customizations.") 
+Therefore, before doing what follows below I copied `~/.oh-my-zsh/themes/agnoster.zsh-theme` to `~/.oh-my-zsh/custom/themes/agnoster.zsh-theme` and worked with that custom theme (specifically, commented out the line with `prompt_context` as is described below). Otherwise you'll have problems updating zsh because the oh-my-zsh directory is a git repository and you shouldn't change it without committing and merging. Whereas `custom` directory is ignored by git ("By default git is set to ignore the custom directory, so that oh-my-zsh's update process does not interfere with your customizations.")
+
+### Fonts
+
+I like the following fonts:
+<https://www.nerdfonts.com/font-downloads>
+
+- `SourceCodePro (10)` - there is a Nerd variant at the link above
+- `Ubuntu Mono Nerd` from the same link is also good
+- `Monaco` font for MacOSX
 
 ### **Hide your username and host from the prompt**  
 
 The following is taken from some online forums:
+
 ```
 I don’t like it that the theme shows my username and host. To get rid of this, we change the directory to  
 $ cd ~/.oh-my-zsh/themes  
@@ -248,11 +261,12 @@ Add `"terminal.integrated.copyOnSelection": true`, to be able have the selected 
 All custom plugins should go (git cloned) into `~/.oh-my-zsh/custom/plugins/`
 
 #### **zsh-autosuggestions (Greyed out inline suggestions)**  
-https://github.com/zsh-users/zsh-autosuggestions 
+<https://github.com/zsh-users/zsh-autosuggestions>
 
 A very cool plugin that I customized a bit.
 
 Docs:
+
 ```
 Installation:
 Manual (Git Clone):
@@ -278,18 +292,18 @@ A very cool plugin but requires setting up and getting used to it. Some default 
 • `Shift + Right/Left Arrows` do not select text (cursor doesn't move at all).
 
 This can be fixed by customizing `ZLE` widgets.  
-https://github.com/zsh-users/zsh-autosuggestions#configuration 
+<https://github.com/zsh-users/zsh-autosuggestions#configuration>
 
 Here you can find the global values for variables:  
-https://github.com/zsh-users/zsh-autosuggestions/blob/master/src/config.zsh 
+<https://github.com/zsh-users/zsh-autosuggestions/blob/master/src/config.zsh>
 
 And here you can get all keys combinations:  
-https://stackoverflow.com/questions/18042685/list-of-zsh-bindkey-commands/38950418 и https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets 
+<https://stackoverflow.com/questions/18042685/list-of-zsh-bindkey-commands/38950418> и <https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets>
 
 Create a new file in `custom` directory:  
 `nano ~/.oh-my-zsh/custom/my_patches.zsh`
 
-I named it exactly like in their examples at https://github.com/ohmyzsh/ohmyzsh/wiki/Customization#overriding-internals :
+I named it exactly like in their examples at <https://github.com/ohmyzsh/ohmyzsh/wiki/Customization#overriding-internals> :
 
 ```
 oh-my-zsh's internals are defined in its lib directory. To change them, just create a file inside the custom directory (its name doesn't matter, as long as it has a .zsh ending) and start customizing whatever you want. Unsatisfied with the way git_prompt_info() works? Write your own implementation!
@@ -325,7 +339,7 @@ I added only `completion`. The initial setting was `ZSH_AUTOSUGGEST_STRATEGY=(hi
 } 
 ```
 
-Here I deleted `forward-char` before `end-of-line`. `forward-char` is exactly `Right Arrow` in `ZLE`. Now when you press right arrow the proposed command will not be selected, but only when you press `End` (`end-of-line`). 
+Here I deleted `forward-char` before `end-of-line`. `forward-char` is exactly `Right Arrow` in `ZLE`. Now when you press right arrow the proposed command will not be selected, but only when you press `End` (`end-of-line`).
 
 ```bash
 # Widgets that accept the suggestion as far as the cursor moves 
@@ -349,9 +363,10 @@ Here I changed the default `forward-word` to `forward-char`. Now when pressing r
 **Important!** Do not add custom plugins to the plugin list in `.zshrc`! Otherwise you risk breaking some other settings, like for example my hotkeys from `/custom/my_patches.zsh` were ignored!
 
 #### **zsh-syntax-highlighting**  
-https://github.com/zsh-users/zsh-syntax-highlighting
+<https://github.com/zsh-users/zsh-syntax-highlighting>
 
 Docs:
+
 ```
 Simply clone this repository and source the script:
 
@@ -374,9 +389,10 @@ My commands:
 `zsh-syntax-highlighting.zsh` must be sourced at the end of the `.zshrc` file.
 
 #### **Autoupdate custom plugins**  
-https://github.com/TamCore/autoupdate-oh-my-zsh-plugins 
+<https://github.com/TamCore/autoupdate-oh-my-zsh-plugins>
 
 Docs:
+
 ```
 Create a new directory in $ZSH_CUSTOM/plugins called autoupdate and clone this repo into that directory. Note: it must be named autoupdate or oh-my-zsh won't recognize that it is a valid plugin directory.
 
@@ -388,11 +404,12 @@ Add autoupdate to the plugins=() list in your ~/.zshrc file and you're done. The
 
 #### **zsh-z**  
 
-`z` — change directories in the most frequently visited recently order ("frecent"). 
+`z` — change directories in the most frequently visited recently order ("frecent").
 
-Trying to figure out what is better – `rupa/z` (https://github.com/rupa/z) or `zsh-z` (https://github.com/agkozak/zsh-z/), but apparently the latter is specifically for `zsh` ("ZSH-z is a native ZSH port of rupa/z, a tool written for bash"). So, I ended up using `zsh-z`.
+Trying to figure out what is better – `rupa/z` (<https://github.com/rupa/z>) or `zsh-z` (<https://github.com/agkozak/zsh-z/>), but apparently the latter is specifically for `zsh` ("ZSH-z is a native ZSH port of rupa/z, a tool written for bash"). So, I ended up using `zsh-z`.
 
-Docs from https://github.com/agkozak/zsh-z:
+Docs from <https://github.com/agkozak/zsh-z>:
+
 ```
 Zsh-z is a native Zsh port of rupa/z, a tool written for bash and Zsh that uses embedded awk scripts to do the heavy lifting. It was quite possibly my most used command line tool for a couple of years. I decided to translate it, awk parts and all, into pure Zsh script, to see if by eliminating calls to external tools (awk, sort, date, sed, mv, rm, and chown) and reducing forking through subshells I could make it faster. The performance increase is impressive, particularly on systems where forking is slow, such as Cygwin, MSYS2, and WSL. I have found that, in those environments, switching directories using Zsh-z can be over 100% faster than it is using rupa/z.
 There is a noteworthy stability increase as well. Race conditions have always been a problem with rupa/z, and users of that utility will occasionally lose their .z databases. By having Zsh-z only use Zsh (rupa/z uses a hybrid shell code that works on bash as well), I have been able to implement a zsh/system-based file-locking mechanism similar to the one @mafredri once proposed for rupa/z. It is now nearly impossible to crash the database, even through extreme testing.
@@ -402,7 +419,7 @@ Zsh-z is a drop-in replacement for rupa/z and will, by default, use the same dat
 
 *****
 Here is a man for `rupa/z`:  
-https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/z/README 
+<https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/z/README>
 
 ```
 DESCRIPTION
@@ -432,12 +449,14 @@ z -l foo list all dirs matching foo (by frecency)
 ```
 
 **Important!** Directories **must be visited first before** they can be jumped to!
-Say, you visited Dropbox/Research. Then you can just type `z` and press Tab and it will get you to the Dropbox/Research directory. 
+Say, you visited Dropbox/Research. Then you can just type `z` and press Tab and it will get you to the Dropbox/Research directory.
 
 #### **zsh-completions**  
+
 Install `zsh-completions`: `sudo pacman -S zsh-completions`
 
 ## **My aliases**  
+
 To see all aliases use `alias` command or install `aliases` plugin and use the `acs` command.
 
 ```bash
@@ -684,6 +703,7 @@ source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighti
 ## **Useful bash/zsh commands**  
 
 ### **Commands (additional keybindings to the default zsh ones below)**  
+
 `..` - `cd` to the parent directory  
 `...` - cd to grand-parent directory, etc.  
 `Ctrl+P` / `Alt+P` – same as `UpArrow` (previous command)  
@@ -693,6 +713,7 @@ source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighti
 ### **Add timestamps to history**  
 
 Add to `~/.zsshrc`:
+
 ```bash
 # alias to show a timestamp next to commands in history
 alias h="history -i"
@@ -700,32 +721,40 @@ alias hg="history | grep -i"
 ```
 
 ### **setopt correct**  
+
 `setopt correct` (in the command line prompt) corrects commands (`sl` → `ls`, etc.). To stop this execute `unsetopt correct` (doesn't seem to work)
 
 ### **Remove duplicates in zsh $PATH**  
+
 ```bash
 typeset -aU path
 ```
+
 ### **dirs -v**  
+
 View all visited directories  
 
 ## **Useful cli applications**  
+
 ### **lf**  
+
 Command-line file manager
 
 ### **pls**  
+
 Installed a prettier `ls` which shows icons and has very beautiful colors:
-https://dhruvkb.github.io/pls/get_started/installation.html  
+<https://dhruvkb.github.io/pls/get_started/installation.html>  
 I installed `pipx`, added `~/.local/bin` to `PATH`.  
-In order for it to work you have to install a `Nerd` font that will support icons. I chose Hack Nerd Font Mono – see https://www.nerdfonts.com/  
+In order for it to work you have to install a `Nerd` font that will support icons. I chose Hack Nerd Font Mono – see <https://www.nerdfonts.com/>  
 Then I had to change my VS Code terminal font to `Hack Nerd Font Mono`.  
 
 ### **tldr for man pages**  
-I tried using this Python client, but it was rather slow: https://github.com/tldr-pages/tldr-python-client  
+
+I tried using this Python client, but it was rather slow: <https://github.com/tldr-pages/tldr-python-client>  
 `sudo pacman -S tldr`  
 I then found `tealdeer` and switched to it (python `tldr` needs to be removed to use this Rust client):
-https://github.com/dbrgn/tealdeer 
-https://dbrgn.github.io/tealdeer/  
+<https://github.com/dbrgn/tealdeer>
+<https://dbrgn.github.io/tealdeer/>  
 `yay -S tealdeer`  
 It is larger than python client, because it installs rust (526 Mb) as dependency. `tealdeer` keeps all cache offline (thus it does not need network to work).  
 Then `$ tldr --seed-config` to create a config file which can be looked at `$ tldr –config-path`. In my case it was at `~/.config/tealdeer/config.toml`. I changed some default colors. Here is my custom `config.toml`:
@@ -765,6 +794,7 @@ auto_update_interval_hours = 720
 ```
 
 ### **fzf**  
+
 `sudo pacman -S fzf`  
 add these lines to `~/.zshrc`:  
 
@@ -774,11 +804,11 @@ source /usr/share/fzf/completion.zsh
 ```
 
 Using the `fzf` finder:
-• `CTRL-J` / `CTRL-K` (or `CTRL-N` / `CTRL-P`) to move cursor up and down 
-• `Enter` key to select the item, `CTRL-C` / `CTRL-G` / `ESC` to exit 
-• In multi-select mode (`-m`), `TAB` and `Shift-TAB` to mark multiple items 
-• Emacs style key bindings 
-• Mouse: scroll, click, double-click; shift-click and shift-scroll on multi-select mode 
+• `CTRL-J` / `CTRL-K` (or `CTRL-N` / `CTRL-P`) to move cursor up and down
+• `Enter` key to select the item, `CTRL-C` / `CTRL-G` / `ESC` to exit
+• In multi-select mode (`-m`), `TAB` and `Shift-TAB` to mark multiple items
+• Emacs style key bindings
+• Mouse: scroll, click, double-click; shift-click and shift-scroll on multi-select mode
 
 ### **Zsh hotkeys (keybindings)**  
 
@@ -805,7 +835,7 @@ Press `[Right Arrow]` to modify the current expression.
 Press `Ctrl + G` to escape from search mode.  
 
 **Command Action**  
-`!!`	- Execute last command in history  
+`!!` - Execute last command in history  
 `!abc` - Execute last command in history beginning with `abc`  
 `!abc:p` - Print last command in history beginning with `abc`  
 
@@ -841,31 +871,31 @@ Shortcuts can be used to change the case of words as well. To make the current w
 `Ctrl + t` — change the current symbol for the previous one. (cisco, csh, zsh)  
 `Ctrl + u` — delete all symbols to the left from cursor till the start of the line(cisco) or delete entire line (csh, zsh)  
 `Ctrl + w` — delete symbols to the left from cursor to the beginning of the word. (cisco, csh, zsh)  
-`Ctrl + xx` — move from the current sursor position to the beginning of the line and back (csh). Same as `ctrl + u` (cisco).   
+`Ctrl + xx` — move from the current sursor position to the beginning of the line and back (csh). Same as `ctrl + u` (cisco).
 `Ctrl + x @` — show possible host name completions taken from `/etc/hosts`.  
 `Ctrl + z` — suspend current task (csh, zsh)  
 `Ctrl + x`; `Ctrl + e` — open `$EDITOR` to modify the entered line. After save the command is sent for execution. If the variable is not set then the system editor is opened.  
 
 **Alt**  
 `Alt + <` — go to the first command in history (zsh)  
-`Alt + >` — go to the last command in history    
+`Alt + >` — go to the last command in history
 `Alt + ?` — show all possible completions (same as `tab-tab`) (same as `which string` in csh, zsh)  
 `Alt + *` — paste all possible completions of the command into the prompt  
 `Alt + /` — try to complete the file name (same as `tab`)  
-`Alt + .` — paste the last command's last argument (same as `!$` without `:p` to check it)    
+`Alt + .` — paste the last command's last argument (same as `!$` without `:p` to check it)
 `Alt + b` — move cursor one word to the left (cisco, csh, zsh)  
 `Alt + c` — convert the current letter to UPPERCASE and all others to lowercase (cisco, csh, zsh)  
 `Alt + d` — delete all symbols from cursor to the end of the word (cisco, csh, zsh)  
 `Alt + f` — move cursor one word forward (cisco, csh, zsh)  
 `Alt + l` — convert all letters from current cursor position to the end of the word to lowercase (cisco, csh, zsh)  
-`Alt + t` — swap current word with the previous one (zsh)   
+`Alt + t` — swap current word with the previous one (zsh)
 `Alt + u` — convert all letters from the current cursor position to the end of the word to UPPERCASE (cisco, csh, zsh)  
 `Alt + back-space` — delete all symbols from cursor to the beginning of the word (cisco, csh, zsh)  
 
 **Tab**  
 `tab-tab` — commad completion. If pressed on an empty line will show the list of all available commands  
-`(string)tab-tab` — list all possible completions    
-`(dir)tab-tab` — show dir's subdirectories    
+`(string)tab-tab` — list all possible completions
+`(dir)tab-tab` — show dir's subdirectories
 `*tab-tab` — show subdirectries including hidden (with .)  
 `~tab-tab` — show all users rfom `/etc/passwd`. By completing user's name you can `cd` into their home directory.  
 `$tab-tab` — show the list of completions for system variables  
