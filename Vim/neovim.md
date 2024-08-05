@@ -6,6 +6,50 @@
 * [Buffers](#buffers)
   * [Navigation between opened buffers](#navigation-between-opened-buffers)
   * [Close unused buffers](#close-unused-buffers)
+  * [Re-open closed buffers](#re-open-closed-buffers)
+* [File explorer](#file-explorer)
+  * [Neo-tree move/cut/copy/paste](#neo-tree-movecutcopypaste)
+  * [File Explorer as a floating window](#file-explorer-as-a-floating-window)
+* [Terminals](#terminals)
+  * [Terminals workflow](#terminals-workflow)
+* [Search](#search)
+  * [Search with arguments (exclude files, directories, etc.)](#search-with-arguments-exclude-files-directories-etc)
+  * [Workflows to search for some text in specific files or folders](#workflows-to-search-for-some-text-in-specific-files-or-folders)
+    * [Using Telescope the default `live_grep` -- first search for text and then limit files](#using-telescope-the-default-live_grep----first-search-for-text-and-then-limit-files)
+    * [Using Telescope `dir live_grep` plugin -- first limit files and then search for text](#using-telescope-dir-live_grep-plugin----first-limit-files-and-then-search-for-text)
+    * [Using Telescope `live_grep_args` plugin](#using-telescope-live_grep_args-plugin)
+  * [Search and Replace](#search-and-replace)
+    * [Plugins](#plugins)
+    * [External tool (`serpl`)](#external-tool-serpl)
+    * [Useful Posts](#useful-posts)
+* [Plugins](#plugins-1)
+  * [All plugins](#all-plugins)
+  * [Telescope](#telescope)
+    * [Useful pickers](#useful-pickers)
+  * [Plugins I tried and not sure I need them](#plugins-i-tried-and-not-sure-i-need-them)
+    * [Telescope extensions](#telescope-extensions)
+    * [Session management](#session-management)
+* [StatusLine (LuaLine)](#statusline-lualine)
+  * [Show function signature when you type](#show-function-signature-when-you-type)
+  * [CamelCase and snake_case motions](#camelcase-and-snake_case-motions)
+  * [Save and open last opened files (buffers)](#save-and-open-last-opened-files-buffers)
+  * [Code Structure and Breadcrumbs](#code-structure-and-breadcrumbs)
+  * [Surronding](#surronding)
+  * [Note taking and Obsidian](#note-taking-and-obsidian)
+  * [Plugins to help learn and practice Vim](#plugins-to-help-learn-and-practice-vim)
+  * [Git plugins](#git-plugins)
+  * [Plugins to test in future](#plugins-to-test-in-future)
+  * [Pluging that I tried and didn't use](#pluging-that-i-tried-and-didnt-use)
+    * [Lazygit](#lazygit)
+* [Colors](#colors)
+  * [Customize a colorschema without modifying it directly (with autocommands)](#customize-a-colorschema-without-modifying-it-directly-with-autocommands)
+  * [Different colorscheme for different files types](#different-colorscheme-for-different-files-types)
+  * [Customize highlights after setting the colorscheme](#customize-highlights-after-setting-the-colorscheme)
+* [Markdown files](#markdown-files)
+* [Working with different layouts (languages)](#working-with-different-layouts-languages)
+* [VSCode features that are needed in any NeoVim IDE](#vscode-features-that-are-needed-in-any-neovim-ide)
+  * [Troubleshooting](#troubleshooting)
+* [Python configs](#python-configs)
   * [Chris (LunarVim) keybindings (<https://www.youtube.com/watch?v=g4dXZ0RQWdw>)](#chris-lunarvim-keybindings-httpswwwyoutubecomwatchvg4dxz0rqwdw)
 * [Tips and Tricks](#tips-and-tricks)
   * [M key on Mac](#m-key-on-mac)
@@ -86,6 +130,7 @@ vim.api.nvim_create_autocmd("BufRead", {
         })
     end
 })
+```
 
 ### Re-open closed buffers
 
@@ -528,12 +573,15 @@ vim.cmd [[
 ### Customize highlights after setting the colorscheme
 
 Example of changing color for selection (Visual mode)
+
+```lua
 vim.cmd [[
   augroup CustomHighlights
     autocmd!
     autocmd ColorScheme sonokai highlight Visual guibg=#fef5e7  
   augroup END
 ]]
+```
 
 ## Markdown files
 
