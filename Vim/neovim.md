@@ -81,9 +81,9 @@ Created a symlink to a directory on `PATH` to start nvim with just `nvim`:
 I like the following fonts:
 <https://www.nerdfonts.com/font-downloads>
 
-* `SourceCodePro (10)` - there is a Nerd variant at the link above
+* `SourceCodePro (10)` - there is a Nerd variant at the link above (this is the font I used in Arch linux!)
 * `Ubuntu Mono Nerd` from the same link is also good
-* `Monaco` font for MacOSX
+* `Monaco` font (originally designed for MacOSX -- rounded parentheses, etc) - <https://github.com/Karmenzind/monaco-nerd-fonts>
 
 ## LazyVim
 
