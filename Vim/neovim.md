@@ -47,6 +47,7 @@
   * [Different colorscheme for different files types](#different-colorscheme-for-different-files-types)
   * [Customize highlights after setting the colorscheme](#customize-highlights-after-setting-the-colorscheme)
 * [Markdown files](#markdown-files)
+  * [Formatting text and spell-checking](#formatting-text-and-spell-checking)
 * [Working with different layouts (languages)](#working-with-different-layouts-languages)
 * [VSCode features that are needed in any NeoVim IDE](#vscode-features-that-are-needed-in-any-neovim-ide)
   * [Troubleshooting](#troubleshooting)
@@ -611,6 +612,10 @@ It does not have color highlights as render-markdown does.
 I also use `mzlogin/vim-markdown-toc` to generate TOC for markdown file, but it doesn't work always well.
 
 I also use `iamcco/markdown-preview.nvim` to sometimes preview my markdown files in browser.
+
+### Formatting text and spell-checking
+
+`:%!fmt -w 80` seems to break lines in a wrapped text (you perhaps need to `:set unwrap` before that).
 
 ## Working with different layouts (languages)
 
