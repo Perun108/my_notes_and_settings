@@ -75,7 +75,7 @@ pyinstaller --onefile --windowed src/main.py --icon "media/my-app-icon.png"
 
 `--icon` is ignored in Linux, keeping it here for consistency.
 
-5. Create a `.deb` file from the build
+5. Create a `.deb` file from the build  
 NOTE: `dist` directory will be created by pyinstaller.
 
 Initially I tried `fpm`:
@@ -112,6 +112,7 @@ d) Create a .desktop file:
 
 ```bash
 touch usr/share/applications/my_app.desktop
+```
 
 with the following contents:
 
@@ -150,8 +151,8 @@ This should build a `.deb` package in the parent directory. Install it with `sud
 
 g) Test and debug if needed
 
-To list where it was installed: `dpkg -L sansconverter`
-By default the executable can be run from `/usr/local/bin/my_app`
-To remove the installed `.deb`: `sudo apt purge my_app`
+To list where it was installed: `dpkg -L sansconverter`  
+By default the executable can be run from `/usr/local/bin/my_app`  
+To remove the installed `.deb`: `sudo apt purge my_app`  
 
 Distribute!
