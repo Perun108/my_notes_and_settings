@@ -162,3 +162,94 @@ By default the executable can be run from `/usr/local/bin/sansconverter`
 To remove the installed `.deb`: `sudo apt purge sansconverter`  
 
 Distribute!
+
+# Windows
+
+Nice tutorial:
+<https://www.pythonguis.com/tutorials/packaging-pyside6-applications-windows-pyinstaller-installforge/>
+
+1. Convert the `png` icon into a specific `ico` file - google how to do that.
+
+2. Change icon name in code - just keep the name of the file:
+
+```python
+icon.addPixmap(QtGui.QPixmap("icons8-om-96.ico")
+```
+
+3. Create a `version.txt` file (not sure if it’s needed TBH) and update it when a new version is out:
+
+```
+VSVersionInfo(
+  ffi=FixedFileInfo(
+    filevers=(2, 0, 0, 0),
+    prodvers=(2, 0, 0, 0),
+    mask=0x3f,
+    flags=0x0,
+    OS=0x40004,
+    fileType=0x1,
+    subtype=0x0,
+    date=(0, 0)
+    ),
+  kids=[
+    StringFileInfo(
+      [
+      StringTable(
+        u'040904B0',
+        [StringStruct(u'CompanyName', u'Kostiantyn Perun'),
+        StringStruct(u'FileDescription', u'Sanskrit transliteration converter'),
+        StringStruct(u'FileVersion', u'2.0'),
+        StringStruct(u'InternalName', u'SansConverter'),
+        StringStruct(u'LegalCopyright', u'Kostiantyn Perun'),
+        StringStruct(u'OriginalFilename', u'SansConverter.Exe'),
+        StringStruct(u'ProductName', u'SansConverter'),
+        StringStruct(u'ProductVersion', u'2.0')])
+      ]), 
+    VarFileInfo([VarStruct(u'Translation', [1033, 1200])])
+  ]
+)
+```
+
+4. Create a simple executable to be run without installation
+
+- Run pyinstaller with this command from the root directory of the repo:
+
+```bash
+pyinstaller --onefile --windowed --icon=src/media/icons8-om-96.ico --add-data "src/media/icons8-om-96.ico;." --version-file="version.txt" src/sans_converter.py 
+```
+
+- This will create a `sans_converter.spec` file and the `dist` and `build` directories.
+
+- Delete the `sans_converter.exe` that has been created by pyinstaller in the `dist` directory.
+
+- Copy the `ico` file to the `dist` directory and run pyinstaller again with this command:
+
+```bash
+pyinstaller sans_converter.spec
+```
+
+- This will create `sans_converter.exe` in the `dist` again, but this time with the proper icon.
+
+5. Create an Installer executable file
+
+- Delete the `build` and `dist` directories from the previous step.
+- Run `pyinstaller` with this command:
+
+```bash
+pyinstaller --windowed --icon=src/media/icons8-om-96.ico --add-data "src/media/icons8-om-96.ico;." --version-file="version.txt" src/sans_converter.py
+```
+
+- Go and copy the `ico` file to the `dist` directory.
+- Start `InstallForge` and set these:.
+    ▪ `General` tab:
+        • `General`: Product name, version, website, Company Name (KosPerun) and supported Windows versions.
+        • `Languages` tab: English, Ukrainian
+    ▪ `Setup` tab:
+        • `Files`:
+            ◦ Click `Add Files` to add the `ico` and `sans_converter.exe` from the `dist/sans_converter` created by `pyinstaller` (it’s crucial to include the `ico` file here otherwise there will be no icon in the app!)
+            ◦ Click `Add Folder` and select `dist/ sans_converter/_internal` that was created by `pyinstaller`.
+        • `Uninstallation`: Click `Include Uninstaller`.
+    ▪ `Dialogs` tab:
+        • `Finish`: Check `Run Application` and append `sans_converter.exe` to the default `<InstallPath>\`
+    ▪ `System` tab:
+        • `Shortcuts`: Add a Desktop and Start menu shortcuts by providing the name (`SansConverter2.0`) and filename (`sans_converter.exe`) + check all three checkboxes in the bottom.
+    ▪ `Build`: Click `Build` on top.
