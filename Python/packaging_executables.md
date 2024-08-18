@@ -239,17 +239,17 @@ pyinstaller --windowed --icon=src/media/icons8-om-96.ico --add-data "src/media/i
 ```
 
 - Go and copy the `ico` file to the `dist` directory.
-- Start `InstallForge` and set these:.
-    ▪ `General` tab:
-        • `General`: Product name, version, website, Company Name (KosPerun) and supported Windows versions.
-        • `Languages` tab: English, Ukrainian
-    ▪ `Setup` tab:
-        • `Files`:
-            ◦ Click `Add Files` to add the `ico` and `sans_converter.exe` from the `dist/sans_converter` created by `pyinstaller` (it’s crucial to include the `ico` file here otherwise there will be no icon in the app!)
-            ◦ Click `Add Folder` and select `dist/ sans_converter/_internal` that was created by `pyinstaller`.
-        • `Uninstallation`: Click `Include Uninstaller`.
-    ▪ `Dialogs` tab:
-        • `Finish`: Check `Run Application` and append `sans_converter.exe` to the default `<InstallPath>\`
-    ▪ `System` tab:
-        • `Shortcuts`: Add a Desktop and Start menu shortcuts by providing the name (`SansConverter2.0`) and filename (`sans_converter.exe`) + check all three checkboxes in the bottom.
-    ▪ `Build`: Click `Build` on top.
+- Start `InstallForge` and set these:  
+    ▪ `General` tab:  
+        • `General`: Product name, version, website, Company Name (KosPerun) and supported Windows versions.  
+        • `Languages` tab: English, Ukrainian  
+    ▪ `Setup` tab:  
+        • `Files`:  
+            ◦ Click `Add Files` to add the `ico` and `sans_converter.exe` from the `dist/sans_converter` created by `pyinstaller` (it’s crucial to include the `ico` file here otherwise there will be no icon in the app!)  
+            ◦ Click `Add Folder` and select `dist/ sans_converter/_internal` that was created by `pyinstaller`.  
+        • `Uninstallation`: Click `Include Uninstaller`.  
+    ▪ `Dialogs` tab:  
+        • `Finish`: Check `Run Application` and append `sans_converter.exe` to the default `<InstallPath>\`  
+    ▪ `System` tab:  
+        • `Shortcuts`: Add a Desktop and Start menu shortcuts by providing the name (`SansConverter2.0`) and filename (`sans_converter.exe`) + check all three checkboxes in the bottom.  
+    ▪ `Build`: Click `Build` on top.  
