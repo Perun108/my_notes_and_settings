@@ -26,22 +26,9 @@
 * [Plugins](#plugins-1)
   * [All plugins](#all-plugins)
   * [Telescope](#telescope)
+    * [Adding ignore patterns to telescope](#adding-ignore-patterns-to-telescope)
     * [Useful pickers](#useful-pickers)
-  * [Plugins I tried and not sure I need them](#plugins-i-tried-and-not-sure-i-need-them)
-    * [Telescope extensions](#telescope-extensions)
-    * [Session management](#session-management)
 * [StatusLine (LuaLine)](#statusline-lualine)
-  * [Show function signature when you type](#show-function-signature-when-you-type)
-  * [CamelCase and snake_case motions](#camelcase-and-snake_case-motions)
-  * [Save and open last opened files (buffers)](#save-and-open-last-opened-files-buffers)
-  * [Code Structure and Breadcrumbs](#code-structure-and-breadcrumbs)
-  * [Surronding](#surronding)
-  * [Note taking and Obsidian](#note-taking-and-obsidian)
-  * [Plugins to help learn and practice Vim](#plugins-to-help-learn-and-practice-vim)
-  * [Git plugins](#git-plugins)
-  * [Plugins to test in future](#plugins-to-test-in-future)
-  * [Pluging that I tried and didn't use](#pluging-that-i-tried-and-didnt-use)
-    * [Lazygit](#lazygit)
 * [Colors](#colors)
   * [Customize a colorschema without modifying it directly (with autocommands)](#customize-a-colorschema-without-modifying-it-directly-with-autocommands)
   * [Different colorscheme for different files types](#different-colorscheme-for-different-files-types)
@@ -52,11 +39,14 @@
 * [VSCode features that are needed in any NeoVim IDE](#vscode-features-that-are-needed-in-any-neovim-ide)
   * [Troubleshooting](#troubleshooting)
 * [Python configs](#python-configs)
-  * [Chris (LunarVim) keybindings (<https://www.youtube.com/watch?v=g4dXZ0RQWdw>)](#chris-lunarvim-keybindings-httpswwwyoutubecomwatchvg4dxz0rqwdw)
+  * [Formatters, linters](#formatters-linters)
 * [Tips and Tricks](#tips-and-tricks)
+  * [Show function signature when you type](#show-function-signature-when-you-type)
+  * [neovim as `git diff` or `merge` tool](#neovim-as-git-diff-or-merge-tool)
   * [M key on Mac](#m-key-on-mac)
     * [Opening files in normal mode](#opening-files-in-normal-mode)
     * [Keymaps](#keymaps)
+* [Chris (LunarVim) keybindings (<https://www.youtube.com/watch?v=g4dXZ0RQWdw>)](#chris-lunarvim-keybindings-httpswwwyoutubecomwatchvg4dxz0rqwdw)
 
 <!-- vim-markdown-toc -->
 
@@ -348,6 +338,18 @@ See discussion here:
 
 ### Telescope
 
+#### Adding ignore patterns to telescope
+
+Add the following line to
+
+```lua
+config = function()
+  telescope.setup({
+    defaults = {
+      ...
+      file_ignore_patterns = { "folder-you-want-to-exclude/", ".*package%-lock%.json" },
+```
+
 #### Useful pickers
 
 buffers
@@ -359,14 +361,110 @@ keymaps (searchable list of keymaps)
 maybe quickfix?
 jumplist
 
-interesting but need to think about use cases:
+Interesting but need to think about use cases:
 current_buffer_fuzzy_find
 
-What's difference between fd and findfiles?
+What's the difference between `fd` and `findfiles`?
 
 If you get that `gr` or `Telescope lsp_references` does not work: `method textDocument/references is not supported by any of the servers registered for the current buffer` - upgrade or install the newest node version (use nvm!)
 
+```
+
+### CamelCase and snake_case motions
+
+I tried the more well-known <https://github.com/bkad/CamelCaseMotion>  
+but:
+
+1. It's no longer maps CamelCaseMotion to <leader>w/e/b/ge by default.
+So you need:
+
+```lua
+vim.keymap.set("n", "\\w", "<Plug>CamelCaseMotion_w")
+vim.keymap.set("n", "\\b", "<Plug>CamelCaseMotion_b")
+vim.keymap.set("n", "\\e", "<Plug>CamelCaseMotion_e")
+vim.keymap.set("n", "\\ge", "<Plug>CamelCaseMotion_ge")
+```
+
+I could not use this (it didn't work): `vim.g.camelcasemotion_key = '\\'`
+2. I cound't get it to work with `c` and `d` - only motions would work,
+but not editing/deleting parts of CamelCase words.
+
+So, I found this wonderful plugin: <https://github.com/chaoren/vim-wordmotion>  
+
+I just set `vim.g.wordmotion_prefix="\\"` and it all worked as I need!
+
+### Session management (Save and open last opened files (buffers))
+
+At first I used persistence and would open last session with <leader>Ss
+<https://github.com/folke/persistence.nvim>)
+See also this demo: <https://www.youtube.com/watch?v=Qf9gfx7gWEY&t=490s>
+
+BUT! Then I found out this `auto-session` plugin and it automatically saves your session:
+<https://github.com/rmagatti/auto-session>
+
+### Code Structure and Breadcrumbs
+
+<https://github.com/stevearc/aerial.nvim>
+
+I mapped `<leader>-a` to toggle aerial popup:
+`wk.mappings["a"] = { "<cmd>AerialToggle!<CR>", "Aerial (Code structure)"}`
+
+Just use `{` and `}` to sync jump while navigating structure.
+
+I could not make it to close when I switch buffers or switch to another app from lvim:
+`close_automatic_events= {'switch_buffer'}` - didn't work with any of these settings.
+
+```
+ -- List of enum values that configure when to auto-close the aerial window
+  --   unfocus       - close aerial when you leave the original source window
+  --   switch_buffer - close aerial when you change buffers in the source window
+  --   unsupported   - close aerial when attaching to a buffer that has no symbol source
+```
+
+### Surrounding
+
+Two nice plugins:
+<https://github.com/tpope/vim-surround>
+<https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md>
+
+I used the first one and kind of got used to it, althoug the second one may seem simpler in terms of keystrokes.
+
+### Note taking and Obsidian
+
+<https://github.com/epwalsh/obsidian.nvim>
+<https://www.reddit.com/r/neovim/comments/18qcyah/notetaking_with_nvim_and_obsidian/>
+
+### Plugins to help learn and practice Vim
+
+<https://github.com/m4xshen/hardtime.nvim>
+<https://www.reddit.com/r/neovim/comments/14jferq/hardtimenvim_a_neovim_plugin_helping_you/>
+Good thing is this plugin disables Arrow Keys by default.
+
+### Git plugins
+
+<https://github.com/lewis6991/gitsigns.nvim> has built-in support for inline git-blame,
+but I like <https://github.com/f-person/git-blame.nvim> much better -
+you can open commit URLs (I bound a U key to leader-g where LunarVim has Git to this).
+It also allows you to set [c ]c to navigate between changed hunks in a buffer!
+
+I tried <https://github.com/airblade/vim-gitgutter>,
+but built-in gitsigns is much better integrated with other gutter plugins like LSP
+
+<https://github.com/rhysd/conflict-marker.vim> - Doesn't work for me with any theme...
+
+### Plugins to test in future
+
+This plugin can be useful but for now I just use the script that it is based on (the link is in Readme in plugin GitHub):
+<https://github.com/axkirillov/hbac.nvim?tab=readme-ov-file>
+<https://github.com/smartpde/telescope-recent-files>
+I could not get it to work properly although is sounds promising:
+<https://github.com/dzfrias/arena.nvim>
+
 ### Plugins I tried and not sure I need them
+
+#### Lazygit
+
+I think it's useful in some cases, but I prefer using terminal commands - it gives me auto suggestions for commit messages from previous commits and also when pre-commit hooks fail I don't have to re-add all the files again - I just repeat the previous command in terminal and I don't have to enter the same commit message again - I repeat the same command from the terminal.  It's useful for fixing up or squashing commits in rebase, for cherry picking commits, for a very simple and straightforward add commit push flow (just press space on the top level of files, c+ commit message and P).
 
 #### Telescope extensions
 
@@ -403,8 +501,6 @@ The same goes for these telescope extensions that I tried and didn't like or nee
     }
   end
 }
-```
-
 ## StatusLine (LuaLine)
 
 <https://www.lunarvim.org/docs/configuration/appearance/statusline>
@@ -453,110 +549,6 @@ lualine_y = { { selectionCount }, components.location },
 lualine_z = { components.progress, components.scrollbar },
 }
 ```
-
-### Show function signature when you type
-
-<https://github.com/ray-x/lsp_signature.nvim>
-
-How to close hover hint when in insert mode (I would do Shift+Ecs in VSCode but here it drops me to Normal mode)
-you can use <M-x> to map to Alt+x in insert mode, but it will again pop up when you type another argument.
-Perhaps better to get used to it and don't pay much attention to that floating window.
-
-### CamelCase and snake_case motions
-
-I tried the more well-known <https://github.com/bkad/CamelCaseMotion>  
-but:
-
-1. It's no longer maps CamelCaseMotion to <leader>w/e/b/ge by default.
-So you need:
-
-```lua
-vim.keymap.set("n", "\\w", "<Plug>CamelCaseMotion_w")
-vim.keymap.set("n", "\\b", "<Plug>CamelCaseMotion_b")
-vim.keymap.set("n", "\\e", "<Plug>CamelCaseMotion_e")
-vim.keymap.set("n", "\\ge", "<Plug>CamelCaseMotion_ge")
-```
-
-I could not use this (it didn't work): `vim.g.camelcasemotion_key = '\\'`
-2. I cound't get it to work with `c` and `d` - only motions would work,
-but not editing/deleting parts of CamelCase words.
-
-So, I found this wonderful plugin: <https://github.com/chaoren/vim-wordmotion>  
-
-I just set `vim.g.wordmotion_prefix="\\"` and it all worked as I need!
-
-### Save and open last opened files (buffers)
-
-At first I used persistence and would open last session with <leader>Ss
-<https://github.com/folke/persistence.nvim>)
-See also this demo: <https://www.youtube.com/watch?v=Qf9gfx7gWEY&t=490s>
-
-BUT! Then I found out this auto-session plugin and it automatically saves yor session:
-<https://github.com/rmagatti/auto-session>
-
-### Code Structure and Breadcrumbs
-
-<https://github.com/stevearc/aerial.nvim>
-
-I mapped `<leader>-a` to toggle aerial popup:
-`wk.mappings["a"] = { "<cmd>AerialToggle!<CR>", "Aerial (Code structure)"}`
-
-Just use `{` and `}` to sync jump while navigating structure.
-
-I could not make it to close when I switch buffers or switch to another app from lvim:
-`close_automatic_events= {'switch_buffer'}` - didn't work with any of these settings.
-
-```
- -- List of enum values that configure when to auto-close the aerial window
-  --   unfocus       - close aerial when you leave the original source window
-  --   switch_buffer - close aerial when you change buffers in the source window
-  --   unsupported   - close aerial when attaching to a buffer that has no symbol source
-```
-
-### Surronding
-
-Two nice plugins:
-<https://github.com/tpope/vim-surround>
-<https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md>
-
-I used the first one and kind of got used to it, althoug the second one may seem simpler in terms of keystrokes.
-
-### Note taking and Obsidian
-
-<https://github.com/epwalsh/obsidian.nvim>
-<https://www.reddit.com/r/neovim/comments/18qcyah/notetaking_with_nvim_and_obsidian/>
-
-### Plugins to help learn and practice Vim
-
-<https://github.com/m4xshen/hardtime.nvim>
-<https://www.reddit.com/r/neovim/comments/14jferq/hardtimenvim_a_neovim_plugin_helping_you/>
-Good thing is this plugin disables Arrow Keys by default.
-
-### Git plugins
-
-<https://github.com/lewis6991/gitsigns.nvim> has built-in support for inline git-blame,
-but I like <https://github.com/f-person/git-blame.nvim> much better -
-you can open commit URLs (I bound a U key to leader-g where LunarVim has Git to this).
-It also allows you to set [c ]c to navigate between changed hunks in a buffer!
-
-I tried <https://github.com/airblade/vim-gitgutter>,
-but built-in gitsigns is much better integrated with other gutter plugins like LSP
-
-<https://github.com/rhysd/conflict-marker.vim> - Doesn't work for me with any theme...
-
-### Plugins to test in future
-
-This plugin can be useful but for now I just use the script that it is based on (the link is in Readme in plugin GitHub):
-<https://github.com/axkirillov/hbac.nvim?tab=readme-ov-file>
-<https://github.com/smartpde/telescope-recent-files>
-I could not get it to work properly although is sounds promising:
-<https://github.com/dzfrias/arena.nvim>
-
-### Pluging that I tried and didn't use
-
-#### Lazygit
-
-I think it's useful in some cases, but I prefer using terminal commands - it gives me auto suggestions for commit messages from previous commits and also when pre-commit hooks fail I don't have to re-add all the files again - I just repeat the previous command in terminal and I don't have to enter the same commit message again - I repeat the same command from the terminal.  It's useful for fixing up or squashing commits in rebase, for cherry picking commits, for a very simple and straightforward add commit push flow (just press space on the top level of files, c+ commit message and P).
 
 ## Colors
 
@@ -678,14 +670,32 @@ require("lspconfig").pyright.setup {
 }
 ```
 
-### Chris (LunarVim) keybindings (<https://www.youtube.com/watch?v=g4dXZ0RQWdw>)
+### Formatters, linters
 
-* if you can’t start `lvim` after installing `cargo` with standard methods (`curl https://sh.rustup.rs -sSf | sh` recommended in Rust dosumentation (<https://doc.rust-lang.org/cargo/getting-started/installation.html>) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` recommended here <https://www.rust-lang.org/tools/install>), it’s probably because it’s not added to `PATH` in `.zshrc`, so just add this line to `./zshrc`: `export PATH="${HOME}/.cargo/bin:${PATH}"` and then restart shell with `exec $SHELL`.
-
-<https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/settings.json>
-<https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/keybindings.json>
+How to add line-length to black and isort args:
+I did this: <https://github.com/LazyVim/LazyVim/discussions/2609#discussioncomment-8614808>
 
 ## Tips and Tricks
+
+### Show function signature when you type
+
+<https://github.com/ray-x/lsp_signature.nvim>
+
+How to close hover hint when in insert mode (I would do Shift+Ecs in VSCode but here it drops me to Normal mode)
+you can use <M-x> to map to Alt+x in insert mode, but it will again pop up when you type another argument.
+Perhaps better to get used to it and don't pay much attention to that floating window.
+
+### neovim as `git diff` or `merge` tool
+
+In the `.gitconfig`
+
+```
+    [alias] dt = “! args=$@; shift $#; nvim -c \”DiffviewOpen $args\””
+```
+
+This is a git alias to open `diffview.nvim`
+
+Run it as follows: `git dt <args>`
 
 <https://blog.devgenius.io/editing-in-lunar-vim-is-magic-17-more-lvim-tips-and-tricks-598ba7f4f6d6>
 
@@ -701,3 +711,10 @@ When running tests, you can go to the specific test by searching its name (`lead
 #### Keymaps
 
 Bind bn and bp to ctrl+tab? Doesn't work well in some terminals (didn't work in iTerm2 on Mac)
+
+## Chris (LunarVim) keybindings (<https://www.youtube.com/watch?v=g4dXZ0RQWdw>)
+
+* if you can’t start `lvim` after installing `cargo` with standard methods (`curl https://sh.rustup.rs -sSf | sh` recommended in Rust dosumentation (<https://doc.rust-lang.org/cargo/getting-started/installation.html>) or with `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` recommended here <https://www.rust-lang.org/tools/install>), it’s probably because it’s not added to `PATH` in `.zshrc`, so just add this line to `./zshrc`: `export PATH="${HOME}/.cargo/bin:${PATH}"` and then restart shell with `exec $SHELL`.
+
+<https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/settings.json>
+<https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/keybindings.json>

@@ -1,26 +1,28 @@
 # Using SyncThing to sync notes, folders (Obsidian, etc.)
 
-Follow official guide: https://docs.syncthing.net/intro/getting-started.html
+Follow official guide: <https://docs.syncthing.net/intro/getting-started.html>
 
 ## What I did
+
 - Install syncthing on all machines that you want to sync (Linux, Android, Mac, etc.) and run it on all of them (Run `syncthing` from the terminal on Linux or Mac and it will open a Web UI in browser)
 - On the first machine (laptop):
-    - Create a folder where you want to keep all your data to be synced (`mkdir ~/Documents/MyObsidianNotesBackUp/`)
-    - Add this folder to SyncThing Web UI (on the right, where the local folders are)
-    - Give it a name (`MyNotes-Ubuntu`)
-    - Click `Add remote device`
-    - If you have syncthing open on another machine it will suggest its ID under `Device ID` (` You can also select one of these nearby devices: `)
-    - Select suggested device ID or enter its ID from the other machine
-    - Give it a name (`MyNotes-Android`)
-    - Go to `Sharing` tab and check your local folder name (`MyNotes-Ubuntu`)
-    - Click on `Identification` to display the first device's QR code. Scan it with the second device (if it's your phone) or enter the ID into the second device.
-    - Create a similar folder on the other device
-    - Open syncthing on the other device and go to `Folders` and add the path to that new folder there.
-    - Go to `Devices` and open QR scanner to add the first device.
+  - Create a folder where you want to keep all your data to be synced (`mkdir ~/Documents/MyObsidianNotesBackUp/`)
+  - Add this folder to SyncThing Web UI (on the right, where the local folders are)
+  - Give it a name (`MyNotes-Ubuntu`)
+  - Click `Add remote device`
+  - If you have syncthing open on another machine it will suggest its ID under `Device ID` (` You can also select one of these nearby devices: `)
+  - Select suggested device ID or enter its ID from the other machine
+  - Give it a name (`MyNotes-Android`)
+  - Go to `Sharing` tab and check your local folder name (`MyNotes-Ubuntu`)
+  - Click on `Identification` to display the first device's QR code. Scan it with the second device (if it's your phone) or enter the ID into the second device.
+  - Create a similar folder on the other device
+  - Open syncthing on the other device and go to `Folders` and add the path to that new folder there.
+  - Go to `Devices` and open QR scanner to add the first device.
 
-#IMPORTANT! Sync won't start for mobile devices at this point - you have to open Web UI on your phone from the syncthing Android client-> Settings and `Add new folder` in the prompt that you'll see there and then enter the path to your sync folder on your phone!
+# IMPORTANT! Sync won't start for mobile devices at this point - you have to open Web UI on your phone from the syncthing Android client-> Settings and `Add new folder` in the prompt that you'll see there and then enter the path to your sync folder on your phone
 
-You can also set up git version contro system for the synced notes for backup and automate it with cron:
+You can also set up git version control system for the synced notes for backup and automate it with cron:
+
 - Create a repo on Github
 - Initialize a git repo inside your synced folder (add `.obsidian/` and `.stfolder/` to `.gitignore`)
 - Set up remove url and origin branch as usual
@@ -41,24 +43,37 @@ else
   echo "No changes to commit."
 fi
 ```
+
 - Make it executable: `chmod +x ~/Documents/MyObsidianSync/cron_push_script.sh`
 - Open cron: `crontab -e`
 - Add cron job into the cron file (I added it to run at noon every sunday):
 `0 12 * * 6 ~/Documents/MyObsidianSync/cron_push_script.sh`
 - Check that it was added to the schedule: `crontab -l`
 
-# Sync dotfiles with a special git bare repo and alias
+# Syncing dotfiles
+
+## Using `meld`
+
+1. Machine 1. Compare changes between local config and git repo with `meld`: `meld ~/.config/nvim/ ~/dotfiles/nvim/` and copy the necessary lines into git repo directory directly in `meld`.
+2. Machine 1. Review changes: `cd ~/dotfiles && git difftool`. Add, commit, push.
+3. Machine 2. Pull all changes: `cd ~/dotfiles && git pull`.
+4. Machine 2. Compare changes with `meld`: `meld ~/.config/nvim/ ~/dotfiles/nvim/` and copy needed lines into local config directory directly in `meld`.
+
+How to install `meld` on MacOS <https://gitlab.com/dehesselle/meld_macos>
+See also discussion <https://gitlab.gnome.org/GNOME/meld/-/issues/804>
+
+## Sync dotfiles with a special git bare repo and alias
 
 I tried this setup and didn't like it. It sounds promising but I found it hard to maintain and potentially prone to issues.
 
 I followed this setup:
-https://www.anand-iyer.com/blog/2018/a-simpler-way-to-manage-your-dotfiles/
+<https://www.anand-iyer.com/blog/2018/a-simpler-way-to-manage-your-dotfiles/>
 
 which is a version of this original post:
-https://news.ycombinator.com/item?id=11070797
+<https://news.ycombinator.com/item?id=11070797>
 
 I also utilized this post written on its basis:
-https://www.atlassian.com/git/tutorials/dotfiles
+<https://www.atlassian.com/git/tutorials/dotfiles>
 
 ---
 
@@ -107,7 +122,7 @@ Add this alias to your .bashrc or .zshrc. From now on, any git operation you wou
 Let’s add a remote, and also set status not to show untracked files:
 
 dotfiles config --local status.showUntrackedFiles no
-dotfiles remote add origin git@github.com:anandpiyer/.dotfiles.git
+dotfiles remote add origin <git@github.com>:anandpiyer/.dotfiles.git
 
 You’ll need to change the remote URL to your git repo. Now, you can easily add the config files you want to be in version control from where they are supposed to be, commit and push. For example, to add tmux config files, I’ll do:
 
@@ -120,7 +135,7 @@ Setting Up a New Machine
 
 To set up a new machine to use your version controlled config files, all you need to do is to clone the repository on your new machine telling git that it is a bare repository:
 
-git clone --separate-git-dir=$HOME/.dotfiles https://github.com/anandpiyer/.dotfiles.git ~
+git clone --separate-git-dir=$HOME/.dotfiles <https://github.com/anandpiyer/.dotfiles.git> ~
 
 However, some programs create default config files, so this might fail if git finds an existing config file in your $HOME. In that case, a simple solution is to clone to a temporary directory, and then delete it once you are done:
 
@@ -159,7 +174,7 @@ echo "alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $H
 
 I packaged the above lines into a snippet up on Bitbucket and linked it from a short-url. So that you can set things up with:
 
-curl -Lks http://bit.do/cfg-init | /bin/bash
+curl -Lks <http://bit.do/cfg-init> | /bin/bash
 
 After you've executed the setup any file within the $HOME folder can be versioned with normal commands, replacing git with your newly created config alias, like:
 
@@ -227,11 +242,11 @@ config push
 
 Again as a shortcut not to have to remember all these steps on any new machine you want to setup, you can create a simple script, store it as Bitbucket snippet like I did, create a short url for it and call it like this:
 
-curl -Lks http://bit.do/cfg-install | /bin/bash
+curl -Lks <http://bit.do/cfg-install> | /bin/bash
 
 For completeness this is what I ended up with (tested on many freshly minted Alpine Linux containers to test it out):
 
-git clone --bare https://bitbucket.org/durdn/cfg.git $HOME/.cfg
+git clone --bare <https://bitbucket.org/durdn/cfg.git> $HOME/.cfg
 function config {
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
@@ -246,7 +261,7 @@ fi;
 config checkout
 config config status.showUntrackedFiles no
 
-## Here's the original post if case the page is deleted:
+## Here's the original post if case the page is deleted
 
 StreakyCobra on Feb 10, 2016 | next [–]
 
@@ -287,7 +302,7 @@ and then proceed as before.
 durdn on Feb 17, 2016 | root | parent | next [–]
 I found out exactly the same problem :)
 durdn on Feb 17, 2016 | parent | prev | next [–]
-As promised I wrote a post about your setup. Thanks a lot for bringing the technique to my attention: https://developer.atlassian.com/blog/2016/02/best-way-to-sto...
+As promised I wrote a post about your setup. Thanks a lot for bringing the technique to my attention: <https://developer.atlassian.com/blog/2016/02/best-way-to-sto>...
 
 StreakyCobra on Feb 22, 2016 | root | parent | next [–]
 Really nice, well explained. I'll know where to point people to when I need to present this techique. Thanks!
@@ -305,10 +320,10 @@ StreakyCobra on Feb 10, 2016 | root | parent | next [–]
 It's probably better if you do it then :-) I would probably skip some important parts trying to explain because I'm too much used to it already.
 
 Siilwyn on Feb 13, 2016 | root | parent | next [–]
-Finally got mine working, it does need some figuring out especially the replication part. I documented the needed commands here: https://github.com/Siilwyn/my-dotfiles/tree/master/.my-dotfi...
+Finally got mine working, it does need some figuring out especially the replication part. I documented the needed commands here: <https://github.com/Siilwyn/my-dotfiles/tree/master/.my-dotfi>...
 
 durdn on Feb 17, 2016 | root | parent | next [–]
-I'll check how you did it. I wrote my notes and a couple of scripts down in a post: https://developer.atlassian.com/blog/2016/02/best-way-to-sto...
+I'll check how you did it. I wrote my notes and a couple of scripts down in a post: <https://developer.atlassian.com/blog/2016/02/best-way-to-sto>...
 durdn on Feb 10, 2016 | root | parent | prev | next [–]
 Working on it! I'll give you full credit for it and link to this thread for reference. Also let me know if you have a Twitter account you'd like me to reference.
 
