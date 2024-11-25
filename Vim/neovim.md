@@ -798,6 +798,105 @@ https://github.com/nvim-telescope/telescope-smart-history.nvim?tab=readme-ov-fil
 https://www.reddit.com/r/neovim/s/kwdB7vInGD  
 https://github.com/mfussenegger/nvim-dap-python/issues/7#issuecomment-755166718
 
+Debug plugins and keymaps:
+```lua
+  "ChristianChiarulli/swenv.nvim",
+  "mfussenegger/nvim-dap-python",
+  "nvim-neotest/neotest",
+  "nvim-neotest/nvim-nio",
+  "nvim-neotest/neotest-python",
 
+wk.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>", "Test Method" }
+wk.mappings["dM"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Test Method DAP" }
+wk.mappings["df"] = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
+wk.mappings["dF"] = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
+wk.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
+-- binding for switching
+wk.mappings["C"] = { name = "Python", c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" }, }
 
+-- setup debug adapter
+lvim.builtin.dap.active = true
+local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+pcall(function()
+  require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
+end)
+-- setup testing
+require("neotest").setup({
+  adapters = {
+    require("neotest-python")({
+      -- Extra arguments for nvim-dap configuration
+      -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
+      dap = {
+        justMyCode = false,
+        console = "integratedTerminal",
+      },
+      args = { "--log-level", "DEBUG", "--quiet" },
+      runner = "pytest",
+    })
+  }
+})
+```
 
+***
+This is the snippet that does that: https://github.com/chrisgrieser/.config/blob/fc14b9f798379d61689d25e6767504e3fae82643/nvim/lua/config/autocmds.lua#L125-L168
+
+Remove the `vim.opt.hlsearch = true` and `vim.opt.hlsearch = false` if you do not care for the automatic-nohl.
+
+If you want a more feature rich solution, there is [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens) which I used before I came up with the autocmd.
+
+```lua
+--------------------------------------------------------------------------------
+-- AUTO-NOHL & INLINE SEARCH COUNT
+-- Taken from https://github.com/chrisgrieser/.config/blob/fc14b9f798379d61689d25e6767504e3fae82643/nvim/lua/config/autocmds.lua#L125-L168
+-- See https://www.reddit.com/r/neovim/comments/1ewodlg/comment/lj2954r/
+------@param mode? "clear"
+---local function searchCountIndicator(mode)
+---  local signColumnPlusScrollbarWidth = 2 + 3 -- CONFIG
+---
+---  local countNs = vim.api.nvim_create_namespace("searchCounter")
+---  vim.api.nvim_buf_clear_namespace(0, countNs, 0, -1)
+---  if mode == "clear" then
+---    return
+---  end
+---
+---  local row = vim.api.nvim_win_get_cursor(0)[1]
+---  local count = vim.fn.searchcount()
+---  if count.total == 0 then
+---    return
+---  end
+---  local text = (" %d/%d "):format(count.current, count.total)
+---  local line = vim.api.nvim_get_current_line():gsub("\t", (" "):rep(vim.bo.shiftwidth))
+---  local lineFull = #line + signColumnPlusScrollbarWidth >= vim.api.nvim_win_get_width(0)
+---  local margin = { (" "):rep(lineFull and signColumnPlusScrollbarWidth or 0) }
+---
+---  vim.api.nvim_buf_set_extmark(0, countNs, row - 1, 0, {
+---    virt_text = { { text, "IncSearch" }, margin },
+---    virt_text_pos = lineFull and "right_align" or "eol",
+---    priority = 200, -- so it comes in front of lsp-endhints
+---  })
+---end
+---
+----- without the `searchCountIndicator`, this `on_key` simply does `auto-nohl`
+---vim.on_key(function(char)
+---  local key = vim.fn.keytrans(char)
+---  local isCmdlineSearch = vim.fn.getcmdtype():find("[/?]") ~= nil
+---  local isNormalMode = vim.api.nvim_get_mode().mode == "n"
+---  local searchStarted = (key == "/" or key == "?") and isNormalMode
+---  local searchConfirmed = (key == "<CR>" and isCmdlineSearch)
+---  local searchCancelled = (key == "<Esc>" and isCmdlineSearch)
+---  if not (searchStarted or searchConfirmed or searchCancelled or isNormalMode) then
+---    return
+---  end
+---
+---  -- works for RHS, therefore no need to consider remaps
+---  local searchMovement = vim.tbl_contains({ "n", "N", "*", "#" }, key)
+---
+---  if (searchCancelled or not searchMovement) and not searchConfirmed then
+---    -- vim.opt.hlsearch = false
+---    searchCountIndicator("clear")
+---  elseif searchMovement or searchConfirmed or searchStarted then
+---    -- vim.opt.hlsearch = true
+---    vim.defer_fn(searchCountIndicator, 1)
+---  end
+---end, vim.api.nvim_create_namespace("autoNohlAndSearchCount"))
+```
