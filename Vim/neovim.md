@@ -22,6 +22,7 @@
   * [Search and Replace](#search-and-replace)
     * [Plugins](#plugins)
     * [External tool (`serpl`)](#external-tool-serpl)
+    * [Interesting keymaps](#interesting-keymaps)
     * [Useful Posts](#useful-posts)
 * [Plugins](#plugins-1)
   * [All plugins](#all-plugins)
@@ -47,7 +48,7 @@
     * [Opening files in normal mode](#opening-files-in-normal-mode)
     * [Keymaps](#keymaps)
 * [Chris (LunarVim) keybindings (<https://www.youtube.com/watch?v=g4dXZ0RQWdw>)](#chris-lunarvim-keybindings-httpswwwyoutubecomwatchvg4dxz0rqwdw)
-
+* [Interesting Keybindings](#interesting-keybidings)
 <!-- vim-markdown-toc -->
 
 ## Installation
@@ -269,6 +270,13 @@ Important and useful posts:
 This way you just press a number and then the keybind and it will open #2, #3, #4,etc additional terminals either horizontally or vertically.
 I took config from here: <https://github.com/dpetka2001/dotfiles/blob/main/dot_config/nvim/lua/plugins/toggleterm.lua>
 
+I saw somewhere interesting keymaps for splitting terminals:
+
+`vim.keymap.set("n", "<leader>Tsv", ":vsp term://", { desc = "Open vertical terminal split" })`
+`vim.keymap.set("n", "<leader>Tsh", ":sp term://",  { desc = "Open horizontal terminal split" })`
+
+I use customized ToggleTerm plugin for this, but maybe just a keymap would be enough instead of a whole plugin?
+
 ### Terminals workflow
 
 1. To have multiple terminals (like in VSCode) you can press <leader>th to open a horizontal terminal
@@ -302,7 +310,7 @@ I took config from here: <https://github.com/dpetka2001/dotfiles/blob/main/dot_c
 
 ### Search and Replace
 
-For multifile use telescope, search for some text that you want to replace (e.g.`repace_this`),
+For multifile use telescope, search for some text that you want to replace (e.g.`replace_this`),
 then `<C-q>` opens in quick fix window, then `:cdo s/replace_this/with_this/g`
 
 #### Plugins
@@ -318,6 +326,14 @@ then `<C-q>` opens in quick fix window, then `:cdo s/replace_this/with_this/g`
 <https://github.com/yassinebridi/serpl>
 See discussion here:
 <https://www.reddit.com/r/neovim/comments/1dmv3cn/i_missed_vs_codes_search_and_replace_so_i_made_a/>
+
+#### Interesting keymaps
+
+`vim.keymap.set('v', '<leader><C-r>', '"hy:%s/\\v<C-r>h//g<left><left>', { desc = "change selection" })`
+
+LazyVim offers `inc-rename.nvim` with similar functionality but:
+1. It renames in entire file (not just in selection)
+2. Maybe just a keymap would be enough instead of a whole plugin?
 
 #### Useful Posts
 
@@ -718,3 +734,14 @@ Bind bn and bp to ctrl+tab? Doesn't work well in some terminals (didn't work in 
 
 <https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/settings.json>
 <https://github.com/LunarVim/LunarVim/blob/4625145d0278d4a039e55c433af9916d93e7846a/utils/vscode_config/keybindings.json>
+
+## Interesting Keybindings
+```lua
+-- Selects the text that was just pasted
+vim.keymap.set("n", "<leader>gp", "`[v`]", { desc = "select pasted text" }) 
+
+vim.keymap.set("n", "<leader>mj", ":m .+1<CR>==",     { desc = "Move line down" })
+vim.keymap.set("n", "<leader>mk", ":m .-2<CR>==",     { desc = "Move line up" })
+vim.keymap.set("v", "<leader>mj", ":m '>+1<CR>gv=gv", { desc = "Move Line Down in Visual Mode" })
+vim.keymap.set("v", "<leader>mk", ":m '<-2<CR>gv=gv", { desc = "Move Line Up in Visual Mode" })
+```
