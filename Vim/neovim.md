@@ -49,6 +49,7 @@
     * [Keymaps](#keymaps)
 * [Chris (LunarVim) keybindings (<https://www.youtube.com/watch?v=g4dXZ0RQWdw>)](#chris-lunarvim-keybindings-httpswwwyoutubecomwatchvg4dxz0rqwdw)
 * [Interesting Keybindings](#interesting-keybidings)
+* [NeoVim painpoints](#neovim-painpoints)
 <!-- vim-markdown-toc -->
 
 ## Installation
@@ -80,6 +81,8 @@ I like the following fonts:
 ## LazyVim
 
 Default keybindings: <https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/editor/telescope.lua>
+
+Read https://lazyvim-ambitious-devs.phillips.codes 
 
 ## Buffers
 
@@ -715,6 +718,10 @@ Run it as follows: `git dt <args>`
 
 <https://blog.devgenius.io/editing-in-lunar-vim-is-magic-17-more-lvim-tips-and-tricks-598ba7f4f6d6>
 
+Diffview as diff and merge tool  
+https://github.com/sindrets/diffview.nvim  
+https://gist.github.com/Pagliacii/8fcb4dc64937305c19df9bb3137e4cad  
+
 ### M key on Mac
 
 <https://www.lunarvim.org/docs/beginners-guide/keybinds-overview>
@@ -745,3 +752,52 @@ vim.keymap.set("n", "<leader>mk", ":m .-2<CR>==",     { desc = "Move line up" })
 vim.keymap.set("v", "<leader>mj", ":m '>+1<CR>gv=gv", { desc = "Move Line Down in Visual Mode" })
 vim.keymap.set("v", "<leader>mk", ":m '<-2<CR>gv=gv", { desc = "Move Line Up in Visual Mode" })
 ```
+
+## NeoVim painpoints
+- Swap files (buffers) instead of directly editing files - I always get "The file has been changed since reading it!!!" message although I work exclusively in neovim and you have to figure out which version you need - the one that was changed (sometimes in some git operation) or something else... (Can be solved by custom auto-save function).
+- In this line - when you change or delete some code and then do live grep for some of the things that you've just deleted and the things that you deleted are there in the grep results because you forgot to save - IDEs and VSCode have a very useful feature to auto-save when leaving the focus (Can be solved by custom auto-save function).
+- git diff shows diff with the committed version, so my local changes are not reflected in it until I commit them, which is something I don't want exactly.
+- Search (and Replace)!!!
+  - in Telescope - whole words, parts, case sensitive, etc.
+  - Search inside folders + exclude folders or filetypes from search
+https://www.reddit.com/r/neovim/comments/11ukbgn/how_to_includeexclude_files_in_telescope_live_grep/
+https://www.reddit.com/r/neovim/comments/r74647/how_to_live_grep_in_telescope_on_certain_folders/ https://miguelcrespo.co/posts/using-telescope-to-find-text-inside-paths/
+  - Previous search input and results in search
+https://www.reddit.com/r/neovim/comments/16boaai/is_there_a_way_to_see_my_last_telescope_search/
+https://www.reddit.com/r/neovim/comments/phndpv/can_telescope_remember_my_last_search_result/?sort=new
+https://github.com/nvim-telescope/telescope-smart-history.nvim
+- Telescope FF - sort by mru? - I ended up using telescope-frequecy.nvim plugin.
+- Mark an open buffer from another branch that does not exist in the current branch (VSCode strikes through the name of the file).
+- How to get code suggestions (actions) on a word (like in VSCode I could Cmd+. and get import suggestions for a class or function).
+  - See https://github.com/kiyoon/python-import.nvim
+  - https://github.com/ray-x/navigator.lua - Code action under cursor including adding imports + better gd and gr floating windows!
+- Spell check for code - nothing worked well, while IDEs and VSCode have excellent spellcheckers.
+  - Try spell check for CamelCase etc like in VSCode
+https://github.com/kamykn/spelunker.vim
+https://github.com/shinglyu/vim-codespell
+- Writing notes in a different language with non Roman scrypt.
+- Debugging in nvim (especially with Docker).
+
+## What didn't work
+- Switching layouts for Insert mode:  
+https://github.com/ivanesmantovich/xkbswitch.nvim  
+https://github.com/lyokha/vim-xkbswitch  
+https://github.com/lyokha/g3kb-switch  
+
+- Writing Obsidian notes in Ukrainian:  
+https://www.reddit.com/r/neovim/comments/6s109n/non_uslanguage_in_insert_mode/  
+https://github.com/lyokha/vim-xkbswitch  
+https://github.com/lyokha/g3kb-switch  
+https://github.com/yorik1984/lualine-xkblayout  
+
+- Too raw yet (didn't work well): https://github.com/prochri/telescope-picker-history-action  
+
+https://github.com/nvim-telescope/telescope-smart-history.nvim?tab=readme-ov-file  
+
+- How to debug in nvim? - Especially with docker  
+https://www.reddit.com/r/neovim/s/kwdB7vInGD  
+https://github.com/mfussenegger/nvim-dap-python/issues/7#issuecomment-755166718
+
+
+
+
